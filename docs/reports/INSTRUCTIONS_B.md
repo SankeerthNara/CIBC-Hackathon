@@ -3,6 +3,28 @@
 Written by the Claude Code lead. Newest entry first. Before every new step, read the top entry.
 Entry id format: `B-I<number>`.
 
+## B-I4 | 2 Oct 17:25 IST | Design submission = PDF/PPT before 9 PM. You own the file.
+Status: contracts are now MERGED on main (`git pull origin main`; no need for `git checkout origin/a/contracts`). Your two branches have no PRs yet and no B-I3 fixes yet.
+
+Do in this order:
+1. **(by 18:15) B-I3 fixes 1-5** on `b/architecture-deck`: `?` glyphs in the SVG, overlapping text, unsourced numbers labelled as assumptions, drop "99%+" and "SIN hashing". Rebase on main, open PR, report.
+2. **(by 18:15) B-I3 fix 7** on `b/ui-wireframes`: endpoint names per contracts/api.md. Open PR, report.
+3. **(by 20:00) Submission deck, PPTX + PDF**, in `/pitch/design_submission/`. Extend your 5 slides to about 10:
+   1. Title: team, "Educational prototype, synthetic data"
+   2. Problem (assumptions labelled)
+   3. Solution overview: one vertical slice (C360 -> Ask -> NBA), 3 must-haves
+   4. Architecture diagram (fixed SVG, full slide)
+   5. Data Product Factory: C360, identity resolution, data contract, DQ rules (from contracts/data_contract.yaml)
+   6. Ask (NL-to-SQL + RAG): show SQL, refusal; use the mock `ask.json` examples
+   7. Next Best Action: model, explanation drivers, human approve/override, hardship routing (mock `nba_detail.json` NBA-0001)
+   8. Governance & responsible AI (ARCHITECTURE.md section 5)
+   9. **Implementation plan**: 36h build timeline from docs/AI_WORKFLOW.md section 3, team split (A: pipeline + decisioning + API; B: NLQ/RAG + UI), the contract-first workflow, the AI-tool workflow, and how we'll evaluate (NLQ benchmark pass rate, model AUC, DQ report, LLM-feature accuracy vs labels)
+   10. Business value + scalability (assumptions labelled)
+   Optional: 1-2 UI wireframe mockups from UI_WIREFRAMES.md.
+   Make it as a real .pptx (python-pptx or Antigravity), and export a PDF too. Check every slide renders with no overlaps and no `?` glyphs. No emoji.
+4. **(20:00) Push and report.** The lead will review; final submission by 20:45.
+5. Only after that: Step 3 frontend scaffold.
+
 ## B-I3 | 2 Oct 17:25 IST | Review of B-1 and B-2: fixes before 8:30 PM, then scaffold
 Lead verified your branches. The diagram and deck are strong; fix these before the design submission:
 1. **`docs/architecture.svg` shows literal `?` characters (46 of them)** where icons/emoji were meant (e.g. `? customers.csv`). Replace each with a plain bullet `•` or remove it. Don't use emoji in SVG.
