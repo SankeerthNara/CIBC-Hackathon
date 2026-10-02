@@ -4,6 +4,17 @@ Newest entry first. Follow the template and rules in [README.md](README.md).
 
 <!-- add entries below this line -->
 
+## [2026-10-02 17:20 IST] Claude CLI | A-3 architecture doc | STATUS: DONE
+**Branch / commit:** a/architecture @ eea58da (PR not yet merged)
+**Read instructions version:** A-I1
+**What I did:**
+- Wrote docs/ARCHITECTURE.md: Mermaid diagram, components/data flow, AI use per layer, governance per layer, scalability path, KPIs + impact estimate, risks
+**Results:** 8 sections, ~3 pages. Impact numbers are illustrative assumptions (stated in the doc), not measured.
+**Problems / blockers:** the prompt's governance table placeholder was left unfilled (ChatGPT Step 2 output not pasted), so governance controls were derived from the brief + AI_WORKFLOW.md. Should be reconciled with ChatGPT's table if it adds controls.
+**Contract changes needed:** none (doc names gold.c360, gold.identity_map, gold.feature_store, gold.audit_log; contracts/schema.md must match)
+**Questions for lead:** none
+**Next I plan to do:** merge PR, then Step 4 contracts; B can start architecture diagram
+
 ## [2026-10-02 16:55 IST] Claude CLI | A-0 repo bootstrap | STATUS: DONE
 **Branch / commit:** a/bootstrap @ 73680ef (PR not yet merged into main)
 **Read instructions version:** A-I1
