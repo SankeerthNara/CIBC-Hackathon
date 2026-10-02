@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Collections 360 — Design Phase Presentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #141B2D;
+      --cream: #F6F2EA;
+      --card-bg: #FFFFFF;
+      --orange: #C73E1D;
+      --amber: #FFD580;
+      --amber-dark: #D97706;
+      --green: #2D6A4F;
+      --slate-text: #334155;
+      --slate-muted: #64748B;
+      --border-color: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--navy);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Header Nav */
+    header {
+      background-color: var(--navy);
+      color: #FFFFFF;
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid var(--orange);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-tag {
+      background: rgba(255, 213, 128, 0.2);
+      color: var(--amber);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 213, 128, 0.4);
+    }
+
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slide-indicator {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--amber);
+    }
+
+    .nav-btn {
+      background: #1F2A44;
+      color: #FFFFFF;
+      border: 1px solid #334155;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+
+    /* Main Slide Container */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1280px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(20, 27, 45, 0.08), 0 8px 10px -6px rgba(20, 27, 45, 0.04);
+      border: 1px solid var(--border-color);
+      padding: 40px;
+      min-height: 640px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide-header {
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .slide-number {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .slide-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .slide-subtitle {
+      font-size: 15px;
+      color: var(--slate-muted);
+      margin-top: 6px;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    /* Cards */
+    .card {
+      background: #F8FAFC;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .card.accent {
+      background: #FFFBEB;
+      border-color: #FDE68A;
+    }
+
+    .card.alert {
+      background: #FEF2F2;
+      border-color: #FECACA;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--slate-text);
+    }
+
+    ul.bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: var(--orange);
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    /* Tables */
+    table.slide-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    table.slide-table th {
+      background: var(--navy);
+      color: #FFFFFF;
+      text-align: left;
+      padding: 10px 14px;
+      font-weight: 600;
+      border: 1px solid var(--navy);
+    }
+
+    table.slide-table td {
+      padding: 10px 14px;
+      border: 1px solid var(--border-color);
+      color: var(--slate-text);
+    }
+
+    table.slide-table tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-orange { background: #FEE2E2; color: var(--orange); }
+    .badge-green { background: #D1FAE5; color: var(--green); }
+    .badge-amber { background: #FEF3C7; color: #B45309; }
+    .badge-navy { background: #E2E8F0; color: var(--navy); }
+
+    /* Architecture slide custom */
+    .arch-preview {
+      width: 100%;
+      height: 480px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: #FFFFFF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .arch-preview img, .arch-preview object {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--cream);
+      border-top: 1px solid var(--border-color);
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--slate-muted);
+    }
+
+    .pills-container {
+      display: flex;
+      gap: 6px;
+    }
+
+    .pill-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #CBD5E1;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pill-dot.active {
+      background: var(--orange);
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .slide {
+        padding: 24px;
+      }
+      .slide-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-title">Apex Collections 360</div>
+      <span class="brand-tag">Design Phase Pitch Deck</span>
+    </div>
+    <div class="deck-controls">
+      <span class="slide-indicator" id="slideIndicator">Slide 1 of 5</span>
+      <button class="nav-btn" onclick="prevSlide()" aria-label="Previous Slide">← Previous</button>
+      <button class="nav-btn" onclick="nextSlide()" aria-label="Next Slide">Next →</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- SLIDE 1: Problem & Solution -->
+    <section class="slide active" id="slide1">
+      <div class="slide-header">
+        <div>
+          <div class="slide-number">Slide 01 · Strategic Opportunity</div>
+          <h1 class="slide-title">From 9 Fragmented Systems to One Governed Cockpit</h1>
+          <div class="slide-subtitle">Unifying banking data to empower frontline agents, eliminate blind spots, and maximize recovery.</div>
+        </div>
+        <span class="badge badge-orange">High Impact</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card alert">
+          <div class="card-title" style="color: var(--orange);">
+            <span>⚠️</span> The Collections Challenge Today
+          </div>
+          <ul class="bullet-list">
+            <li><strong>Severe Data Silos:</strong> Customer context is fractured across 9 legacy systems (cards, loans, deposits, dialers, CRM, bureau).</li>
+            <li><strong>High Handle Time:</strong> Over 3 minutes of a 10-minute call is squandered on manual cross-system record lookup.</li>
+            <li><strong>40% Broken Promise-to-Pay (PTP):</strong> Blanket, impersonal outreach leads to repeat delinquency and friction.</li>
+            <li><strong>Vulnerability Blind Spots:</strong> Hardship disclosures (medical emergencies, job loss) buried in call audio are missed.</li>
+          </ul>
+        </div>
+
+        <div class="card accent">
+          <div class="card-title" style="color: var(--amber-dark);">
+            <span>💡</span> Our Solution: One Governed Vertical Slice
+          </div>
+          <ul class="bullet-list">
+            <li><strong>Layer 1 (Data Product Factory):</strong> Curates golden <em>Collections 360 (C360)</em> in DuckDB with 99%+ entity matching and data contracts.</li>
+            <li><strong>Layer 2 (Insight &amp; NLP):</strong> <em>Collections Ask</em> writes transparent SQL, cites call transcripts via RAG, and refuses out-of-scope queries.</li>
+            <li><strong>Layer 3 (AI Decisioning):</strong> <em>Next Best Action (NBA)</em> pairs LightGBM break risk with plain-English SHAP drivers and human override.</li>
+            <li><strong>End-to-End Governance:</strong> Zero demographic bias, hardship circuit breakers, and immutable audit logs across all tiers.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 20px; background: #FFFFFF; border-left: 4px solid var(--navy);">
+        <p style="font-size: 13.5px; color: var(--slate-text);">
+          <strong>Core Innovation:</strong> A single, thin, deeply integrated slice from raw data to front-of-house UI. Designed specifically for frontline recovery officers and risk governance executives.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Architecture Diagram -->
+    <section class="slide" id="slide2">
+      <div class="slide-header">
+        <div>
+          <div class="slide-number">Slide 02 · System Architecture</div>
+          <h1 class="slide-title">End-to-End Governed Pipeline</h1>
+          <div class="slide-subtitle">Modular, scalable architecture connecting synthetic sources to an auditable React cockpit.</div>
+        </div>
+        <span class="badge badge-navy">Full Stack</span>
+      </div>
+
+      <div class="arch-preview">
+        <object data="../../docs/architecture.svg" type="image/svg+xml">
+          <img src="../../docs/architecture.svg" alt="System Architecture Diagram" />
+        </object>
+      </div>
+
+      <div class="grid-4" style="margin-top: 16px;">
+        <div class="card" style="padding: 12px;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--navy);">1. SOURCES</div>
+          <div style="font-size: 11px; color: var(--slate-muted);">Core, loans, cards, contact logs, transcripts, bureau.</div>
+        </div>
+        <div class="card" style="padding: 12px;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--green);">2. DATA FACTORY (A)</div>
+          <div style="font-size: 11px; color: var(--slate-muted);">DuckDB Raw → Curated → Golden C360 + DQ Contract.</div>
+        </div>
+        <div class="card" style="padding: 12px;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--orange);">3. AI ENGINES (A &amp; B)</div>
+          <div style="font-size: 11px; color: var(--slate-muted);">NL-to-SQL + sqlglot, RAG citations, LightGBM + SHAP.</div>
+        </div>
+        <div class="card" style="padding: 12px;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--navy);">4. UI WORKSTATION (B)</div>
+          <div style="font-size: 11px; color: var(--slate-muted);">FastAPI + React 360, Ask, NBA queue &amp; Governance.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Where AI is Used and Why -->
+    <section class="slide" id="slide3">
+      <div class="slide-header">
+        <div>
+          <div class="slide-number">Slide 03 · AI Capabilities &amp; Guardrails</div>
+          <h1 class="slide-title">Where AI is Used — and Why</h1>
+          <div class="slide-subtitle">Design Rule: The LLM proposes &amp; extracts; deterministic code validates &amp; decides.</div>
+        </div>
+        <span class="badge badge-amber">Smart &amp; Safe</span>
+      </div>
+
+      <table class="slide-table">
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>AI Capability</th>
+            <th>Implementation</th>
+            <th>Why It Earns Its Place</th>
+            <th>Deterministic Guardrail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>L1 Factory</strong></td>
+            <td>Field Mapping &amp; Codegen</td>
+            <td>LLM drafts source-to-gold mapping &amp; cleaning SQL</td>
+            <td>Cuts schema integration effort across 9 sources from days to minutes</td>
+            <td><span class="badge badge-green">Human Review</span> + DQ contract test assertions</td>
+          </tr>
+          <tr>
+            <td><strong>L1 Factory</strong></td>
+            <td>Schema Drift Detection</td>
+            <td>Compares upstream files with schema; summarizes delta</td>
+            <td>Stops unexpected upstream format breaks before corrupting pipelines</td>
+            <td><span class="badge badge-navy">Reject Table</span> quarantines invalid records</td>
+          </tr>
+          <tr>
+            <td><strong>L2 Insight</strong></td>
+            <td>Natural Language to SQL</td>
+            <td>Schema context prompt creates DuckDB SQL queries</td>
+            <td>Empowers non-technical analysts to query collections data instantly</td>
+            <td><span class="badge badge-orange">sqlglot Guard</span>: SELECT-only, LIMIT enforced, read-only DB</td>
+          </tr>
+          <tr>
+            <td><strong>L2 Insight</strong></td>
+            <td>Transcript RAG</td>
+            <td>Vector retrieval over speaker-turn chunks of call logs</td>
+            <td>Surfaces customer qualitative context ("why" payments were delayed)</td>
+            <td><span class="badge badge-amber">Verifiable Citations</span>: Doc ID + excerpt; zero hallucination</td>
+          </tr>
+          <tr>
+            <td><strong>L3 Decision</strong></td>
+            <td>Feature Extraction</td>
+            <td>Extracts <code>hardship_signal</code>, <code>stated_delay_reason</code> from audio</td>
+            <td>Converts qualitative conversation into model-ready features</td>
+            <td><span class="badge badge-green">20+ Test Labels</span> eval set; prompt versioned</td>
+          </tr>
+          <tr>
+            <td><strong>L3 Decision</strong></td>
+            <td>PTP Break Model + NBA</td>
+            <td>LightGBM classifier + SHAP explainability</td>
+            <td>Ranks high-risk delinquency and tailors interventions</td>
+            <td><span class="badge badge-navy">Plain English</span> top 3 drivers; 0 protected attributes</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card alert" style="margin-top: 16px;">
+        <p style="font-size: 13px; color: var(--orange);">
+          <strong>Truth in Numbers:</strong> Numbers presented to users always originate directly from SQL query executions or calibrated ML models—never generated by an LLM text completion.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Governance & Responsible AI -->
+    <section class="slide" id="slide4">
+      <div class="slide-header">
+        <div>
+          <div class="slide-number">Slide 04 · Governance &amp; Ethics</div>
+          <h1 class="slide-title">Responsible AI Built In, Not Bolted On</h1>
+          <div class="slide-subtitle">Scored governance rubric addressed with verifiable technical guarantees and audit trails.</div>
+        </div>
+        <span class="badge badge-green">Zero Bias</span>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">📜 1. Formal Data Contract</div>
+          <p style="font-size: 12.5px; color: var(--slate-text); line-height: 1.5;">
+            Governed by <code>contracts/data_contract.yaml</code>. Enforces schema constraints, uniqueness, not-null rules, and valid DPD ranges [0, 365]. Emits live pass/fail data quality reports.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">⚖️ 2. Zero Demographic Bias</div>
+          <p style="font-size: 12.5px; color: var(--slate-text); line-height: 1.5;">
+            Protected attributes (Age, Gender, Ethnicity, Religion, Marital Status, Postal Code proxies) are mathematically barred from features and models. Verified by automated unit tests.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🛡️ 3. Hardship Circuit Breaker</div>
+          <p style="font-size: 12.5px; color: var(--slate-text); line-height: 1.5;">
+            When vulnerability or hardship is detected from audio transcripts, automated outreach is instantly frozen. Accounts route strictly to human specialists for compassionate review.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 20px;">
+        <div class="card">
+          <div class="card-title">🔒 4. Read-Only SQL Guardrails</div>
+          <ul class="bullet-list">
+            <li>Strict <strong>SELECT-only</strong> AST validation via <code>sqlglot</code>; blocks DDL, DML, and injection.</li>
+            <li>Enforced <code>LIMIT</code> (50 default, 200 max) prevents denial of service.</li>
+            <li>Explicit refusal state detailing why prohibited queries were rejected.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">✍️ 5. Human-in-the-Loop Audit Trail</div>
+          <ul class="bullet-list">
+            <li>Every recommendation requires explicit human action (Approve or Override).</li>
+            <li>Overrides require mandatory categorization and specialist notes.</li>
+            <li>Tamper-evident audit log records actor, timestamp, inputs, model version, and outcome.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Business Impact & Scalability -->
+    <section class="slide" id="slide5">
+      <div class="slide-header">
+        <div>
+          <div class="slide-number">Slide 05 · Value &amp; Scalability</div>
+          <h1 class="slide-title">Quantifiable Recovery ROI &amp; Enterprise Roadmap</h1>
+          <div class="slide-subtitle">Clear path from hackathon DuckDB prototype to production cloud data lakehouse.</div>
+        </div>
+        <span class="badge badge-navy">ROI Driven</span>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div style="font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--navy);">Target Operational KPI Lift (Synthetic Baseline)</div>
+          <table class="slide-table">
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Baseline</th>
+                <th>Mechanism</th>
+                <th>Target Lift</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>PTP Kept Rate</strong></td>
+                <td>60%</td>
+                <td>Targeted intervention on high-risk breaks</td>
+                <td><strong style="color: var(--green);">+5 pts (65%)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Contact Efficiency</strong></td>
+                <td>20%</td>
+                <td>Response-history channel &amp; time matching</td>
+                <td><strong style="color: var(--green);">+15% rel.</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Call Handle Time</strong></td>
+                <td>10 min</td>
+                <td>C360 replaces 9 siloed system lookups</td>
+                <td><strong style="color: var(--green);">-20% (-2 min)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Analyst Turnaround</strong></td>
+                <td>3 days</td>
+                <td>Collections Ask self-serve queries</td>
+                <td><strong style="color: var(--green);">&lt; 30 sec</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 12px; color: var(--slate-muted); margin-top: 8px;">
+            *Capacity Lift: Saving 2 min/call on 100 agents (60 calls/day) frees <strong>20 agent equivalents</strong>.
+          </p>
+        </div>
+
+        <div>
+          <div style="font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--navy);">Enterprise Production Roadmap</div>
+          <div class="card" style="padding: 14px; font-size: 12.5px; line-height: 1.6;">
+            <div><strong>Storage:</strong> DuckDB → Snowflake / Databricks Medallion Lakehouse</div>
+            <div><strong>Ingestion:</strong> Batch load → Real-time Kafka / Debezium CDC</div>
+            <div><strong>Features:</strong> SQL store → Centralized Feature Store (Feast / Hopsworks)</div>
+            <div><strong>MLOps:</strong> LightGBM → MLflow Registry with champion/challenger drift checks</div>
+            <div><strong>Security:</strong> Mock auth → Enterprise Okta SSO + Fine-Grained Column Masking</div>
+          </div>
+          <div class="card alert" style="margin-top: 10px; padding: 12px;">
+            <p style="font-size: 12px; color: var(--orange);">
+              <strong>Educational Prototype:</strong> Fully synthetic data; demonstrates high technical rigor, defensible unit economics, and bank-grade governance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="pills-container">
+      <div class="pill-dot active" onclick="goToSlide(0)"></div>
+      <div class="pill-dot" onclick="goToSlide(1)"></div>
+      <div class="pill-dot" onclick="goToSlide(2)"></div>
+      <div class="pill-dot" onclick="goToSlide(3)"></div>
+      <div class="pill-dot" onclick="goToSlide(4)"></div>
+    </div>
+    <div>Educational prototype — synthetic data only. CIBC Hackathon 2026.</div>
+    <div>Use <strong>← / →</strong> keyboard arrows to navigate</div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const pills = document.querySelectorAll('.pill-dot');
+    const indicator = document.getElementById('slideIndicator');
+
+    function updateSlide() {
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx === currentSlide);
+      });
+      pills.forEach((p, idx) => {
+        p.classList.toggle('active', idx === currentSlide);
+      });
+      indicator.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    function goToSlide(idx) {
+      currentSlide = idx;
+      updateSlide();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>
