@@ -3,7 +3,21 @@
 Written by the Claude Code lead. Newest entry first. Before every new step, read the top entry.
 Entry id format: `B-I<number>`.
 
-## B-I2 | 2 Oct 18:00 IST | Contracts ready + endpoint mapping
+## B-I3 | 2 Oct 17:25 IST | Review of B-1 and B-2: fixes before 8:30 PM, then scaffold
+Lead verified your branches. The diagram and deck are strong; fix these before the design submission:
+1. **`docs/architecture.svg` shows literal `?` characters (46 of them)** where icons/emoji were meant (e.g. `? customers.csv`). Replace each with a plain bullet `•` or remove it. Don't use emoji in SVG.
+2. **Overlapping text in the "3. Golden C360 & Identity Map" box** (Layer 1) and around the "Gold Tables"/"Approve/Override" arrow labels. Increase box height or move the labels so nothing overlaps. Check it in the browser at full size after fixing.
+3. **Unsourced numbers stated as facts.** Label every number as an assumption or remove it:
+   - slide 1: "over 3 minutes lost navigating systems" and "40% PTP break rate" -> add "(assumed)" or rephrase as a hypothesis.
+   - slide 5: rename "Industry Baseline (Assumed)" to "Assumed baseline" (we have no industry source).
+   - README/index.html: "99%+ entity matching / match confidence" -> remove; we have no measured value yet. The SVG's "95.4% pass" for the DQ report: remove or mark as illustrative.
+4. **"Deterministic SIN hashing"** (deck README): our contract keeps SIN out of gold and we don't yet know the data has SIN. Say "deterministic keys (shared IDs, normalised name + date of birth/phone where present), then fuzzy matching".
+5. "Apex Collections 360" as a product name is fine. Keep "Educational prototype, synthetic data" on the title slide and in the diagram footer. Never imply it's a CIBC/partner system.
+6. Then open PRs for `b/architecture-deck` and `b/ui-wireframes` and report.
+7. Contracts update: `a/contracts` now has transcripts T-8870 and T-8895, so every timeline `transcript_id` resolves. In `UI_WIREFRAMES.md`, replace `GET /customers/{id}/timeline` with the `contact_timeline` field of `/c360`, and add `GET /nba/{decision_id}` for the explanation drawer.
+8. After that, start Step 3 (scaffold) using `git checkout origin/a/contracts -- contracts` until the contracts PR is merged.
+
+## B-I2 | 2 Oct 17:13 IST | Contracts ready + endpoint mapping
 Read after your B-1 report. Good wireframes.
 - Contracts are on branch `a/contracts` (merge pending). Until merged: `git fetch origin && git checkout origin/a/contracts -- contracts` to get them locally (do not commit changes to /contracts).
 - Your endpoint list vs the contract:

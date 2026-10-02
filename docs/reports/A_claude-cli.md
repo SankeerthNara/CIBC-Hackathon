@@ -4,7 +4,21 @@ Newest entry first. Follow the template and rules in [README.md](README.md).
 
 <!-- add entries below this line -->
 
-## [2026-10-02 17:50 IST] Claude CLI | A-4 contracts | STATUS: DONE
+## [2026-10-02 17:25 IST] Claude CLI | Lead verification of all branches | STATUS: DONE
+**Branch / commit:** a/contracts @ 2dd81a0; main reports
+**Read instructions version:** A-I1
+**What I did:**
+- Verified a/contracts, b/ui-wireframes, b/architecture-deck: 10 mock JSON + data_contract.yaml parse; ids consistent across c360/nba_queue/nba_detail; SVG is valid XML; rendered SVG and deck in a browser
+- Found 2 timeline transcript_ids (T-8870, T-8895) with no transcript mock: added them on a/contracts
+- Corrected my earlier report timestamps (A-3 17:03, A-4 17:09, B-I2 17:13; I had written guessed times)
+- Wrote B-I3 with fixes for B's diagram and deck
+**Results:** contracts consistent; B's deck renders; diagram has 46 literal `?` glyphs + overlapping text; deck states unsourced numbers (40% break rate, 3 min lost, 99%+ matching) as facts
+**Problems / blockers:** 3 branches not merged into main (a/contracts, b/ui-wireframes, b/architecture-deck)
+**Contract changes needed:** none
+**Questions for lead:** none
+**Next I plan to do:** merge contracts PR; finalise design submission with B
+
+## [2026-10-02 17:09 IST] Claude CLI | A-4 contracts | STATUS: DONE
 **Branch / commit:** a/contracts @ 280e8e7 (PR not yet merged)
 **Read instructions version:** A-I1
 **What I did:**
@@ -18,7 +32,7 @@ Newest entry first. Follow the template and rules in [README.md](README.md).
 **Questions for lead:** none
 **Next I plan to do:** wait for real datasets at build start, then Step 5 pipeline. Tonight: help finalise design submission.
 
-## [2026-10-02 17:20 IST] Claude CLI | A-3 architecture doc | STATUS: DONE
+## [2026-10-02 17:03 IST] Claude CLI | A-3 architecture doc | STATUS: DONE
 **Branch / commit:** a/architecture @ eea58da (PR not yet merged)
 **Read instructions version:** A-I1
 **What I did:**
