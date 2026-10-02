@@ -26,6 +26,7 @@ Enums: `bucket` = current, 1-30, 31-60, 61-90, 90+. `hardship_flag` = clear, pos
 ---
 
 ## GET /customers/{golden_id}/c360
+Includes the contact timeline (`contact_timeline`); there is no separate timeline endpoint.
 Mock: `c360.json` (object keyed by golden_id; the response is one value).
 
 Response 200 (abridged; see mock for all fields):
@@ -175,6 +176,29 @@ Latest data quality run. Mock: `dq_report.json` (illustrative numbers).
  "identity_resolution": {"golden_customers": 962, "avg_sources_per_customer": 4.3, "avg_match_confidence": 0.94, "below_threshold": 23}}
 ```
 `rules[].status`: pass | warn | fail.
+
+## GET /transcripts/{transcript_id}
+Full call transcript for a timeline item or a RAG citation. Mock: `transcripts.json` (keyed by transcript_id: T-8812, T-8843, T-8901).
+```json
+{"transcript_id": "T-8812", "golden_id": "G-004817", "contact_id": "CT-104", "date": "2026-09-12", "channel": "call", "agent_id": "AG-0711", "duration_sec": 412,
+ "turns": [{"speaker": "customer", "text": "Shifts at the plant got cut in August, I can do $1,000 by the 15th."}],
+ "summary": "Customer reports reduced shifts since August; promised $1,000 by 15 Sep.",
+ "llm_features": {"hardship_signal": "severe", "stated_delay_reason": "reduced_income", "ptp_intent_strength": 0.6}}
+```
+`speaker`: agent | customer. 404 `not_found` if unknown.
+
+## GET /governance/fairness
+Fairness and human-in-the-loop evidence for the Governance screen. Mock: `governance_fairness.json`.
+```json
+{"model_version": "2026.10.02-a",
+ "protected_attributes_excluded": {"status": "pass", "checked_attributes": ["age", "gender", "ethnicity", "religion", "marital_status", "postal_code"],
+                                   "features_in_model": ["dpd_max_current", "..."], "test": "tests/test_no_protected_attributes.py::test_feature_list",
+                                   "last_run": "2026-10-02T06:00:00-04:00"},
+ "human_in_the_loop": {"decisions_total": 10, "pending": 8, "approved": 1, "overridden": 1, "override_rate": 0.5},
+ "hardship": {"severe_routed_to_specialist": 1, "possible_flagged_for_agent_review": 1, "automated_treatment_blocked": 1},
+ "segment_outcomes": [{"segment": "salaried", "customers": 5, "avg_break_prob": 0.57, "aggressive_treatment_rate": 0.4}]}
+```
+`override_rate` = overridden / (approved + overridden). `aggressive_treatment` = call or escalate.
 
 ## GET /health
 `{"status": "ok", "db": "data/collections.duckdb", "contract_version": "1.0.0"}`

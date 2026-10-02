@@ -269,4 +269,47 @@ w('ask', {
         'citations': [], 'refused': True,
         'refusal_reason': 'This asks for direct personal identifiers (date of birth, SIN), which are not available through natural-language queries.',
         'route': 'refused'}})
+
+w('transcripts', {
+    'T-8812': {'transcript_id': 'T-8812', 'golden_id': 'G-004817', 'contact_id': 'CT-104', 'date': '2026-09-12', 'channel': 'call',
+               'agent_id': 'AG-0711', 'duration_sec': 412,
+               'turns': [{'speaker': 'agent', 'text': 'Hi, this is about the overdue balance on your personal loan. Is now a good time?'},
+                         {'speaker': 'customer', 'text': 'Yes. Money has been tight since August.'},
+                         {'speaker': 'agent', 'text': 'Thanks for telling me. What could you manage, and when?'},
+                         {'speaker': 'customer', 'text': 'Shifts at the plant got cut in August, I can do $1,000 by the 15th.'}],
+               'summary': 'Customer reports reduced shifts since August; promised $1,000 by 15 Sep.',
+               'llm_features': {'hardship_signal': 'severe', 'stated_delay_reason': 'reduced_income', 'ptp_intent_strength': 0.6}},
+    'T-8843': {'transcript_id': 'T-8843', 'golden_id': 'G-004817', 'contact_id': 'CT-101', 'date': '2026-09-25', 'channel': 'call',
+               'agent_id': 'AG-0842', 'duration_sec': 298,
+               'turns': [{'speaker': 'agent', 'text': 'The $1,000 payment we discussed did not come through. What happened?'},
+                         {'speaker': 'customer', 'text': 'I still have no full shifts. I can do $800 by October 2nd.'}],
+               'summary': 'Broken PTP acknowledged; new PTP $800 by 2 Oct. Hours still reduced.',
+               'llm_features': {'hardship_signal': 'severe', 'stated_delay_reason': 'reduced_income', 'ptp_intent_strength': 0.55}},
+    'T-8901': {'transcript_id': 'T-8901', 'golden_id': 'G-007741', 'contact_id': 'CT-301', 'date': '2026-09-29', 'channel': 'call',
+               'agent_id': 'AG-0842', 'duration_sec': 356,
+               'turns': [{'speaker': 'customer', 'text': 'My income dropped this quarter, what are my options?'},
+                         {'speaker': 'agent', 'text': 'We can look at a reduced payment plan. Let me check what fits.'}],
+               'summary': 'Self-employed customer reports income drop; asked about payment plan options.',
+               'llm_features': {'hardship_signal': 'possible', 'stated_delay_reason': 'reduced_income', 'ptp_intent_strength': 0.55}}})
+
+# fairness numbers computed from the mock decisions so they stay consistent
+seg_rows = []
+for sg in ['salaried', 'hourly_wage', 'self_employed']:
+    ids = [c for c in C if c['seg'] == sg]
+    seg_rows.append({'segment': sg, 'customers': len(ids),
+                     'avg_break_prob': round(sum(c['prob'] for c in ids) / len(ids), 2),
+                     'aggressive_treatment_rate': round(sum(c['treat'] in ('call', 'escalate') for c in ids) / len(ids), 2)})
+w('governance_fairness', {
+    'model_version': MV,
+    'protected_attributes_excluded': {
+        'status': 'pass', 'checked_attributes': ['age', 'gender', 'ethnicity', 'religion', 'marital_status', 'postal_code'],
+        'features_in_model': ['dpd_max_current', 'ptp_broken_count_90d', 'payroll_delay_days', 'card_utilisation', 'sms_response_rate_30d',
+                              'bureau_score_delta_90d', 'days_since_last_contact', 'deposit_balance', 'hardship_signal',
+                              'stated_delay_reason', 'ptp_intent_strength'],
+        'test': 'tests/test_no_protected_attributes.py::test_feature_list', 'last_run': REFRESH},
+    'human_in_the_loop': {'decisions_total': 10, 'pending': 8, 'approved': 1, 'overridden': 1, 'override_rate': 0.5},
+    'hardship': {'severe_routed_to_specialist': 1, 'possible_flagged_for_agent_review': 1, 'automated_treatment_blocked': 1},
+    'segment_outcomes': seg_rows,
+    'notes': 'aggressive_treatment = call or escalate. Illustrative mock numbers; real values come from the decisioning module.'})
+
 print('ok', len(c360), 'customers')
