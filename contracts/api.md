@@ -178,7 +178,7 @@ Latest data quality run. Mock: `dq_report.json` (illustrative numbers).
 `rules[].status`: pass | warn | fail.
 
 ## GET /transcripts/{transcript_id}
-Full call transcript for a timeline item or a RAG citation. Mock: `transcripts.json` (keyed by transcript_id: T-8812, T-8843, T-8901).
+Full call transcript for a timeline item or a RAG citation. Mock: `transcripts.json` (keyed by transcript_id: T-8812, T-8843, T-8870, T-8895, T-8901; every transcript_id in c360 timelines has one).
 ```json
 {"transcript_id": "T-8812", "golden_id": "G-004817", "contact_id": "CT-104", "date": "2026-09-12", "channel": "call", "agent_id": "AG-0711", "duration_sec": 412,
  "turns": [{"speaker": "customer", "text": "Shifts at the plant got cut in August, I can do $1,000 by the 15th."}],

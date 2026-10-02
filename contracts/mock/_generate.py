@@ -290,7 +290,19 @@ w('transcripts', {
                'turns': [{'speaker': 'customer', 'text': 'My income dropped this quarter, what are my options?'},
                          {'speaker': 'agent', 'text': 'We can look at a reduced payment plan. Let me check what fits.'}],
                'summary': 'Self-employed customer reports income drop; asked about payment plan options.',
-               'llm_features': {'hardship_signal': 'possible', 'stated_delay_reason': 'reduced_income', 'ptp_intent_strength': 0.55}}})
+               'llm_features': {'hardship_signal': 'possible', 'stated_delay_reason': 'reduced_income', 'ptp_intent_strength': 0.55}},
+    'T-8870': {'transcript_id': 'T-8870', 'golden_id': 'G-009024', 'contact_id': 'CT-701', 'date': '2026-09-24', 'channel': 'call',
+               'agent_id': 'AG-0711', 'duration_sec': 241,
+               'turns': [{'speaker': 'agent', 'text': 'Your card is past due by about six weeks. Can we talk about a plan?'},
+                         {'speaker': 'customer', 'text': 'I need to sit down with my budget first. Can you call me next week?'}],
+               'summary': 'Right-party contact; customer will review budget, open to a plan.',
+               'llm_features': {'hardship_signal': 'clear', 'stated_delay_reason': 'overextended_credit', 'ptp_intent_strength': 0.45}},
+    'T-8895': {'transcript_id': 'T-8895', 'golden_id': 'G-012890', 'contact_id': 'CT-801', 'date': '2026-09-29', 'channel': 'call',
+               'agent_id': 'AG-0620', 'duration_sec': 187,
+               'turns': [{'speaker': 'customer', 'text': 'I sent $400 this morning. The rest comes when my next contract pays out.'},
+                         {'speaker': 'agent', 'text': 'Thanks, I can see it. I will note the rest is expected after your contract payment.'}],
+               'summary': 'Partial payment $400 received; remainder expected after seasonal contract income.',
+               'llm_features': {'hardship_signal': 'clear', 'stated_delay_reason': 'seasonal_income', 'ptp_intent_strength': 0.8}}})
 
 # fairness numbers computed from the mock decisions so they stay consistent
 seg_rows = []
