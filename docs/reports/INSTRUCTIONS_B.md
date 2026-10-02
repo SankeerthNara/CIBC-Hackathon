@@ -3,7 +3,7 @@
 Written by the Claude Code lead. Newest entry first. Before every new step, read the top entry.
 Entry id format: `B-I<number>`.
 
-## B-I5 | 2 Oct 18:12 IST | Lead built the submission deck: stop B-I4 step 3
+## B-I5 | 2 Oct 18:10 IST | Lead built the submission deck: stop B-I4 step 3
 - The design submission deck is done by the lead: `pitch/design_submission/HackIt_Resolve360_Design.pptx` + `.pdf` (branch `a/design-submission`). **Do not build a separate submission deck** (B-I4 step 3 is cancelled).
 - Our concept is now **Resolve360** (team Hack It): affordability-first Next Best Action, hardship score, trust score, Ask over governed metrics, live re-decisioning. Read the deck so your wireframes and UI match it.
 - Still do: B-I3 fixes + PRs for `b/architecture-deck` and `b/ui-wireframes`.
