@@ -1,0 +1,163 @@
+{
+  "items": [
+    {
+      "audit_id": "AUD-0103",
+      "at": "2026-10-02T09:40:00-04:00",
+      "event": "overridden",
+      "decision_id": "NBA-0005",
+      "golden_id": "G-003318",
+      "actor": "AG-0711",
+      "actor_role": "agent",
+      "model_version": "2026.10.02-a",
+      "detail": "Override: payment_plan instead of call. Reason: customer asked to be contacted by email only this week",
+      "outcome": "overridden"
+    },
+    {
+      "audit_id": "AUD-0102",
+      "at": "2026-10-02T09:15:00-04:00",
+      "event": "approved",
+      "decision_id": "NBA-0004",
+      "golden_id": "G-020915",
+      "actor": "AG-0620",
+      "actor_role": "agent",
+      "model_version": "2026.10.02-a",
+      "detail": "Approved reminder by SMS",
+      "outcome": "approved"
+    },
+    {
+      "audit_id": "AUD-0101",
+      "at": "2026-10-02T06:10:01-04:00",
+      "event": "hardship_routed",
+      "decision_id": "NBA-0001",
+      "golden_id": "G-004817",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "Hardship signal severe: routed to human specialist, automated treatment blocked",
+      "outcome": "pending_specialist"
+    },
+    {
+      "audit_id": "AUD-0001",
+      "at": "2026-10-02T06:10:00-04:00",
+      "event": "nba_recommended",
+      "decision_id": "NBA-0001",
+      "golden_id": "G-004817",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "Hardship signals in the last call and a missed payroll deposit. Route to a hardship specialist; do not apply automated collection pressure.",
+      "outcome": "pending"
+    },
+    {
+      "audit_id": "AUD-0002",
+      "at": "2026-10-02T06:10:00-04:00",
+      "event": "nba_recommended",
+      "decision_id": "NBA-0002",
+      "golden_id": "G-011203",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "High utilisation and 41 DPD with no SMS response. Call in French in the morning window; customer has not consented to SMS.",
+      "outcome": "pending"
+    },
+    {
+      "audit_id": "AUD-0003",
+      "at": "2026-10-02T06:10:00-04:00",
+      "event": "nba_recommended",
+      "decision_id": "NBA-0003",
+      "golden_id": "G-007741",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "Self-reported income drop and 52 DPD. A reduced-payment plan is more likely to be kept than a full-amount demand. Possible hardship: agent review required, specialist optional.",
+      "outcome": "pending"
+    },
+    {
+      "audit_id": "AUD-0004",
+      "at": "2026-10-02T06:10:00-04:00",
+      "event": "nba_recommended",
+      "decision_id": "NBA-0004",
+      "golden_id": "G-020915",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "Near the 30-day boundary and responsive to SMS. A reminder this evening may prevent a roll to the next bucket.",
+      "outcome": "pending"
+    },
+    {
+      "audit_id": "AUD-0005",
+      "at": "2026-10-02T06:10:00-04:00",
+      "event": "nba_recommended",
+      "decision_id": "NBA-0005",
+      "golden_id": "G-003318",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "Customer has funds but is 67 DPD with no broken promises. A call to arrange a catch-up payment is likely to succeed.",
+      "outcome": "pending"
+    },
+    {
+      "audit_id": "AUD-0006",
+      "at": "2026-10-02T06:10:00-04:00",
+      "event": "nba_recommended",
+      "decision_id": "NBA-0006",
+      "golden_id": "G-016672",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "Calls are not permitted. SMS with a payment link at noon matches when the customer usually responds.",
+      "outcome": "pending"
+    },
+    {
+      "audit_id": "AUD-0007",
+      "at": "2026-10-02T06:10:00-04:00",
+      "event": "nba_recommended",
+      "decision_id": "NBA-0007",
+      "golden_id": "G-009024",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "Falling bureau score and a maxed card. Offer a structured payment plan before further deterioration. Match confidence is 0.84, so verify identity on the call.",
+      "outcome": "pending"
+    },
+    {
+      "audit_id": "AUD-0008",
+      "at": "2026-10-02T06:10:00-04:00",
+      "event": "nba_recommended",
+      "decision_id": "NBA-0008",
+      "golden_id": "G-012890",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "Recently engaged and kept the last promise. A light email reminder is proportionate; no call needed.",
+      "outcome": "pending"
+    },
+    {
+      "audit_id": "AUD-0009",
+      "at": "2026-10-02T06:10:00-04:00",
+      "event": "nba_recommended",
+      "decision_id": "NBA-0009",
+      "golden_id": "G-015530",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "Low risk. Only a gentle in-app reminder ahead of the statement date.",
+      "outcome": "pending"
+    },
+    {
+      "audit_id": "AUD-0010",
+      "at": "2026-10-02T06:10:00-04:00",
+      "event": "nba_recommended",
+      "decision_id": "NBA-0010",
+      "golden_id": "G-018264",
+      "actor": "system",
+      "actor_role": "system",
+      "model_version": "2026.10.02-a",
+      "detail": "Early stage; a friendly call after work hours can resolve it before it rolls. Overdraft noted.",
+      "outcome": "pending"
+    }
+  ],
+  "total": 13,
+  "page": 1,
+  "page_size": 50
+}

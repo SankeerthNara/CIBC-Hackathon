@@ -1,0 +1,198 @@
+{
+  "items": [
+    {
+      "decision_id": "NBA-0001",
+      "golden_id": "G-004817",
+      "display_name": "R. Mitchell",
+      "products": [
+        "Credit card",
+        "Personal loan"
+      ],
+      "bucket": "31-60",
+      "max_dpd": 34,
+      "total_overdue": 1612.0,
+      "break_prob": 0.81,
+      "top_reason": "Payroll deposit missing for 14 days",
+      "treatment": "hardship_referral",
+      "channel": "call",
+      "recommended_time": "2026-10-03T10:00:00-04:00",
+      "requires_specialist": true,
+      "status": "pending",
+      "hardship_flag": "severe"
+    },
+    {
+      "decision_id": "NBA-0002",
+      "golden_id": "G-011203",
+      "display_name": "S. Tremblay",
+      "products": [
+        "Credit card"
+      ],
+      "bucket": "31-60",
+      "max_dpd": 41,
+      "total_overdue": 2250.0,
+      "break_prob": 0.78,
+      "top_reason": "Card utilisation at 93% with two missed payments",
+      "treatment": "call",
+      "channel": "call",
+      "recommended_time": "2026-10-03T09:30:00-04:00",
+      "requires_specialist": false,
+      "status": "pending",
+      "hardship_flag": "clear"
+    },
+    {
+      "decision_id": "NBA-0003",
+      "golden_id": "G-007741",
+      "display_name": "A. Nguyen",
+      "products": [
+        "Personal loan"
+      ],
+      "bucket": "31-60",
+      "max_dpd": 52,
+      "total_overdue": 1900.0,
+      "break_prob": 0.74,
+      "top_reason": "Irregular deposits and income drop",
+      "treatment": "payment_plan",
+      "channel": "call",
+      "recommended_time": "2026-10-03T13:00:00-04:00",
+      "requires_specialist": false,
+      "status": "pending",
+      "hardship_flag": "possible"
+    },
+    {
+      "decision_id": "NBA-0004",
+      "golden_id": "G-020915",
+      "display_name": "P. Gagnon",
+      "products": [
+        "Credit card"
+      ],
+      "bucket": "1-30",
+      "max_dpd": 29,
+      "total_overdue": 640.0,
+      "break_prob": 0.69,
+      "top_reason": "Missed last two statement payments",
+      "treatment": "reminder",
+      "channel": "sms",
+      "recommended_time": "2026-10-02T18:00:00-04:00",
+      "requires_specialist": false,
+      "status": "pending",
+      "hardship_flag": "clear"
+    },
+    {
+      "decision_id": "NBA-0005",
+      "golden_id": "G-003318",
+      "display_name": "M. Roy",
+      "products": [
+        "Auto loan"
+      ],
+      "bucket": "61-90",
+      "max_dpd": 67,
+      "total_overdue": 3100.0,
+      "break_prob": 0.66,
+      "top_reason": "Two missed instalments, balance available in chequing",
+      "treatment": "call",
+      "channel": "call",
+      "recommended_time": "2026-10-03T11:00:00-04:00",
+      "requires_specialist": false,
+      "status": "pending",
+      "hardship_flag": "clear"
+    },
+    {
+      "decision_id": "NBA-0006",
+      "golden_id": "G-016672",
+      "display_name": "K. MacDonald",
+      "products": [
+        "Personal loan"
+      ],
+      "bucket": "31-60",
+      "max_dpd": 38,
+      "total_overdue": 1450.0,
+      "break_prob": 0.63,
+      "top_reason": "No consent for calls; prior SMS responses positive",
+      "treatment": "reminder",
+      "channel": "sms",
+      "recommended_time": "2026-10-03T12:00:00-03:00",
+      "requires_specialist": false,
+      "status": "pending",
+      "hardship_flag": "clear"
+    },
+    {
+      "decision_id": "NBA-0007",
+      "golden_id": "G-009024",
+      "display_name": "V. Chen",
+      "products": [
+        "Credit card"
+      ],
+      "bucket": "31-60",
+      "max_dpd": 45,
+      "total_overdue": 1600.0,
+      "break_prob": 0.61,
+      "top_reason": "Bureau score dropped 42 points in 90 days",
+      "treatment": "payment_plan",
+      "channel": "call",
+      "recommended_time": "2026-10-03T14:00:00-07:00",
+      "requires_specialist": false,
+      "status": "pending",
+      "hardship_flag": "clear"
+    },
+    {
+      "decision_id": "NBA-0008",
+      "golden_id": "G-012890",
+      "display_name": "T. Campbell",
+      "products": [
+        "Line of credit"
+      ],
+      "bucket": "31-60",
+      "max_dpd": 33,
+      "total_overdue": 1250.0,
+      "break_prob": 0.6,
+      "top_reason": "Seasonal income pattern, last promise kept",
+      "treatment": "reminder",
+      "channel": "email",
+      "recommended_time": "2026-10-03T09:00:00-06:00",
+      "requires_specialist": false,
+      "status": "pending",
+      "hardship_flag": "clear"
+    },
+    {
+      "decision_id": "NBA-0010",
+      "golden_id": "G-018264",
+      "display_name": "L. Okafor",
+      "products": [
+        "Credit card"
+      ],
+      "bucket": "1-30",
+      "max_dpd": 12,
+      "total_overdue": 180.0,
+      "break_prob": 0.34,
+      "top_reason": "Early delinquency, overdraft on chequing",
+      "treatment": "reminder",
+      "channel": "call",
+      "recommended_time": "2026-10-03T17:00:00-05:00",
+      "requires_specialist": false,
+      "status": "pending",
+      "hardship_flag": "clear"
+    },
+    {
+      "decision_id": "NBA-0009",
+      "golden_id": "G-015530",
+      "display_name": "J. Singh",
+      "products": [
+        "Credit card"
+      ],
+      "bucket": "current",
+      "max_dpd": 0,
+      "total_overdue": 0,
+      "break_prob": 0.12,
+      "top_reason": "Account current, strong deposits",
+      "treatment": "reminder",
+      "channel": "app",
+      "recommended_time": "2026-10-04T09:00:00-04:00",
+      "requires_specialist": false,
+      "status": "pending",
+      "hardship_flag": "clear"
+    }
+  ],
+  "total": 10,
+  "page": 1,
+  "page_size": 50
+}

@@ -1,0 +1,31 @@
+{
+  "approve_example": {
+    "decision_id": "NBA-0004",
+    "status": "approved",
+    "final_treatment": "reminder",
+    "reviewed_by": "AG-0620",
+    "reviewed_at": "2026-10-02T09:15:00-04:00",
+    "override_reason": null,
+    "audit_id": "AUD-0102"
+  },
+  "override_example": {
+    "decision_id": "NBA-0005",
+    "status": "overridden",
+    "final_treatment": "payment_plan",
+    "reviewed_by": "AG-0711",
+    "reviewed_at": "2026-10-02T09:40:00-04:00",
+    "override_reason": "Customer asked to be contacted by email only this week",
+    "audit_id": "AUD-0103"
+  },
+  "error_hardship_example": {
+    "error": {
+      "code": "hardship_requires_specialist",
+      "message": "This decision involves a hardship case and must be reviewed by a specialist.",
+      "details": {
+        "decision_id": "NBA-0001",
+        "required_role": "specialist",
+        "actor_role": "agent"
+      }
+    }
+  }
+}
