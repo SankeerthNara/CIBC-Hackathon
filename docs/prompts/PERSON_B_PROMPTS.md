@@ -30,6 +30,10 @@ Rules:
 - Every screen has loading, empty and error states; accessible contrast and
   labels; works at 375px and desktop.
 - Never commit secrets; use .env (see .env.example).
+- REPORTING: after every task/milestone/blocker, first read the latest
+  docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry per
+  docs/reports/README.md to docs/reports/B_antigravity.md and push it to main
+  (git pull --rebase origin main && git push origin HEAD:main).
 - Everything is synthetic data. Label the app "Educational prototype".
 ```
 
@@ -59,6 +63,9 @@ wireframe level (layout, components, data fields, interactions):
     attributes excluded" proof, human-in-the-loop stats.
 For each screen list the API calls it needs. Do not write code yet. Output as
 /docs/UI_WIREFRAMES.md.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 ## STEP 2: Architecture diagram + design-phase deck (tonight, after Person A pushes docs/ARCHITECTURE.md)
@@ -81,6 +88,9 @@ Produce:
 2. A 5-slide design-phase deck in /pitch/design_deck (problem, architecture,
    where AI is used, governance and responsible AI, business value and
    scalability). Concise bullets, diagram on slide 2.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 ## STEP 3: Frontend scaffold (tonight, or first thing Day 1)
@@ -100,6 +110,9 @@ Create a React + Vite + TypeScript + Tailwind app in /frontend. Read
   sans body; reusable Card, Table, Chip, Button, Badge (risk/bucket colours),
   Drawer, CodeBlock, Skeleton, EmptyState, ErrorState components.
 Show me a plan first, then implement. Run it and verify in the browser.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 ## STEP 4: NL-to-SQL service (Build Day 1 AM)
@@ -133,6 +146,9 @@ exposing POST /ask per /contracts/api.md):
    write operation, prompt injection, an unknown table). run_benchmark.py prints
    pass/fail per question and a summary, saved to /docs/NLQ_BENCHMARK.md.
 Report the pass rate and the failures; iterate prompts until >= 85% pass.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 ## STEP 5: RAG over notes and transcripts (Build Day 1 PM)
@@ -151,6 +167,9 @@ under /data/raw (or the curated tables if present):
 Add 8 RAG benchmark questions to benchmark/questions.json (e.g. "Why did
 customer X say they couldn't pay?", "Which customers mentioned job loss in
 recent calls?") and report results.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 ## STEP 6: Parallel UI build (Build Day 1 PM - Day 2 AM)
@@ -164,6 +183,9 @@ Build the Collections 360 screen at /customer/:id per /docs/UI_WIREFRAMES.md and
 red hardship badge; product holdings table with DPD status badges; contact
 timeline; identity resolution + lineage panel with match confidence and the
 quality checks behind each field. Use api.ts only. Include loading/empty/error.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 **Agent 2: Ask**
@@ -174,6 +196,9 @@ this" collapsible SQL panel showing the SQL and data products used; LLM insight
 text; follow-up chips; citation list for RAG answers; a distinct, friendly
 refusal state showing the reason. Include 5 starter question chips from the
 benchmark. Use api.ts only.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 **Agent 3: NBA queue**
@@ -185,6 +210,9 @@ model version. Actions: Approve, and Override (modal requiring a reason and an
 alternative treatment). Hardship cases show a "Routed to specialist - human
 review required" banner and cannot be auto-approved. Optimistic UI update and
 error rollback. Use api.ts only.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 **Agent 4: Governance**
@@ -195,6 +223,9 @@ Quality Report (pass/fail per rule with counts and a status chart), Audit Log
 (filterable table of decisions, approvals and overrides), and a Fairness &
 Controls panel (protected attributes excluded - proof, human-in-the-loop
 override rate, hardship-routed count). Use api.ts only.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 ## STEP 7: Browser verification (after each UI chunk and before every PR)
@@ -208,6 +239,9 @@ check the audit log shows both. Screenshot each step at desktop and 375px wide.
 Fix visual bugs, overflow, and console errors. If a response does not match
 /contracts/api.md, DO NOT adapt the UI to guess; list each mismatch (endpoint,
 expected, actual) so I can send it to my teammate.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 ## STEP 8: Switch from mocks to real API (Handoff points: Day 1 midday and Day 2 AM)
@@ -217,6 +251,9 @@ Set VITE_USE_MOCK=false and VITE_API_BASE to the local backend. Re-point NLQ at
 data/collections.duckdb (the real gold DB from my teammate). Re-run the NL
 benchmark and the browser demo flow. Report: benchmark pass rate before/after,
 any API mismatches, any questions that fail on real data and why.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 ## STEP 9: Pitch assets (Day 2 PM)
@@ -233,6 +270,9 @@ NLQ_BENCHMARK.md) and screenshots:
    (timestamp, what's on screen, narration, click path), with the demo account
    to use for each shot.
 3. Capture clean screenshots of every key screen into /pitch/screenshots.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 ## STEP 10: Final polish checklist prompt (Day 2 evening, before freeze)
@@ -244,4 +284,7 @@ focus visible, 375px layout OK, page titles set, footer says "Educational
 prototype - synthetic data". Fix demo-blocking bugs only; no new features.
 Then update README sections for the frontend (install, run, env vars) and list
 what changed.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_B.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/B_antigravity.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```

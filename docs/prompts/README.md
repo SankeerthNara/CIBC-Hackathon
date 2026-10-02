@@ -21,3 +21,6 @@ Overall plan, schedule and ownership: [../AI_WORKFLOW.md](../AI_WORKFLOW.md)
 **Build Day 2 (4 Oct)**
 - A: finish Step 6, Step 7 (review) and Step 8 (agents). B: finish UI, Step 7, Step 8 (switch to real API).
 - Freeze ~5 PM. A: Step 9 (pitch). B: Steps 9-10. Submit by 8 PM.
+
+## Reporting
+Every prompt ends with a reporting instruction. Agents write progress to `docs/reports/` (see [../reports/README.md](../reports/README.md)) and read new instructions from `docs/reports/INSTRUCTIONS_A.md` / `INSTRUCTIONS_B.md`. ChatGPT cannot write to the repo: paste its REPORT block into `docs/reports/A_chatgpt.md` and push it.
