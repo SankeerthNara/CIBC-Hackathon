@@ -1,9 +1,11 @@
 # Prompt Index
 
-| File | Who | Tools |
+| File | Who | Tool and steps |
 |---|---|---|
-| [PERSON_A_PROMPTS.md](PERSON_A_PROMPTS.md) | Person A | ChatGPT, Claude CLI, Antigravity |
-| [PERSON_B_PROMPTS.md](PERSON_B_PROMPTS.md) | Person B | Antigravity |
+| [A_CLAUDE_CLI.md](A_CLAUDE_CLI.md) | Person A | Claude CLI (main builder). Steps 0, 3, 4, 5, 6, 7 |
+| [A_CHATGPT.md](A_CHATGPT.md) | Person A | ChatGPT (scope, governance, pitch). Shared context + Steps 1, 2, 9 |
+| [A_ANTIGRAVITY.md](A_ANTIGRAVITY.md) | Person A | Antigravity (parallel agents). Step 8 |
+| [B_ANTIGRAVITY.md](B_ANTIGRAVITY.md) | Person B | Antigravity (all of B's work). Steps 0-10 |
 
 Overall plan, schedule and ownership: [../AI_WORKFLOW.md](../AI_WORKFLOW.md)
 
@@ -21,3 +23,6 @@ Overall plan, schedule and ownership: [../AI_WORKFLOW.md](../AI_WORKFLOW.md)
 **Build Day 2 (4 Oct)**
 - A: finish Step 6, Step 7 (review) and Step 8 (agents). B: finish UI, Step 7, Step 8 (switch to real API).
 - Freeze ~5 PM. A: Step 9 (pitch). B: Steps 9-10. Submit by 8 PM.
+
+## Reporting
+Every prompt ends with a reporting instruction. Agents write progress to `docs/reports/` (see [../reports/README.md](../reports/README.md)) and read new instructions from `docs/reports/INSTRUCTIONS_A.md` / `INSTRUCTIONS_B.md`. ChatGPT cannot write to the repo: paste its REPORT block into `docs/reports/A_chatgpt.md` and push it.

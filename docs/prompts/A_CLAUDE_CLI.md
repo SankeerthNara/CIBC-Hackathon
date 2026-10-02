@@ -1,37 +1,7 @@
-# Person A: Paste-Ready Prompts
+# Person A: Claude CLI prompts
 
-Tools: **ChatGPT** (thinking/pitch), **Claude CLI** (build; run from repo root `D:\Infinium\CIBC-Hackathon`), **Antigravity** (parallel agents/testing).
-Paste each block as-is, in order. Tag shows the tool. Don't skip step 0.
-
----
-
-## SHARED CONTEXT (paste at the start of every NEW ChatGPT chat)
-
-```
-Context: I'm in a 2-person team in a bank "Collections Hackathon" (IST).
-Challenge: "Design a student-ready solution for the Collections function that
-unifies enterprise and interaction data, enables natural-language access, and
-powers operational AI use cases." Collections = contacting customers who missed
-card/loan payments, agreeing a plan, recovering what's owed.
-Three layers: (1) Data Product Factory: raw -> curated -> golden Collections 360
-(C360), customer ID matching, data contract with quality rules, DQ report.
-(2) Insight & NLP: NL-to-SQL + RAG over notes/transcripts, show SQL/sources for
-every answer, refuse questions outside allowed data. (3) AI Decisioning: pick a
-use case (next best action / agent assist / routing / channel optimisation /
-post-call summary / QA), with feature store, working model/agent, explanation per
-decision, human review/override. Governance throughout: data contract, explain
-every decision, human in the loop, fairness (no protected attributes; flag
-hardship/vulnerability).
-Data (fully synthetic, messy): customers, card_accounts, loan_accounts,
-deposit_accounts, collections_cases, contact_history (CSV); agent_notes (text);
-call_transcripts (JSON); voice_samples (WAV, optional); external bureau scores (CSV).
-Phases: design submission 2 Oct 5-9 PM; 36h build 3 Oct 9AM - 4 Oct 9PM;
-submit repo + architecture diagram + data contract file + 5-min demo video +
-10-slide deck. Scoring: business impact, technical quality + working demo, smart
-AI use, governance/responsible AI, storytelling.
-Our plan: one vertical slice. Stack: Python, DuckDB, FastAPI, LightGBM, React.
-Me = pipeline (L1) + decisioning (L3) + API. Teammate = NL-to-SQL/RAG (L2) + UI.
-```
+Run `claude` from the repo root `D:\Infinium\CIBC-Hackathon`. Paste one step at a time, in order. Reports go to `docs/reports/A_claude-cli.md`.
+Order of play and handoffs: [README.md](README.md). Plan: [../AI_WORKFLOW.md](../AI_WORKFLOW.md).
 
 ---
 
@@ -50,7 +20,7 @@ initialised). Read docs/AI_WORKFLOW.md first. Then:
    backend/nlq, backend/api/routers/nlq.py, frontend, pitch), and rules: never
    commit secrets, never use protected attributes (age, gender, ethnicity,
    religion, marital status, postal code as proxy) in decisioning, every AI
-   decision returns an explanation, SELECT-only SQL for NLQ.
+   decision returns an explanation, SELECT-only SQL for NLQ. Reporting: after every task, read the latest docs/reports/INSTRUCTIONS_A.md, then append a report entry per docs/reports/README.md to docs/reports/A_claude-cli.md (Antigravity agents use A_antigravity.md) and push it to main.
 3. Write .gitignore (node_modules, .venv, __pycache__, .env, data/raw/*,
    data/curated/*, data/gold/*, *.duckdb, dist), .env.example (LLM_API_KEY=,
    LLM_MODEL=, DUCKDB_PATH=data/collections.duckdb), and a README skeleton with
@@ -60,33 +30,14 @@ initialised). Read docs/AI_WORKFLOW.md first. Then:
    rapidfuzz, httpx) and a Makefile with targets: setup, pipeline, api, test.
 5. Commit on a branch a/bootstrap and push; tell me the PR command.
 Don't write business logic yet.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_A.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/A_claude-cli.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
 ---
 
-## STEP 1: ChatGPT: scope sanity check (tonight, 10 min)
-
-```
-[Paste SHARED CONTEXT first]
-Critique our plan: one vertical slice (DuckDB medallion pipeline -> "Ask"
-NL-to-SQL showing SQL + refusal -> Next Best Action with explanation and
-human override queue, with governance panel). What will judges love? What's the
-biggest risk in 36h for 2 people? What should we cut? Give a final must-have
-list (max 5) and non-goals (max 4). Be blunt.
-```
-
-## STEP 2: ChatGPT: governance design (tonight)
-
-```
-[Paste SHARED CONTEXT first]
-List concrete responsible-AI controls we can implement AND demo in a prototype,
-for each of: data contract, role-based access, excluded protected attributes
-(and how to prove exclusion with a test), hardship/vulnerability detection and
-how treatment changes, human-in-the-loop points, audit log, per-decision
-explanation, fairness check across segments, consent/contact-hour limits. For
-each give: implementation in under 2 hours, and what we show on screen. Output
-as a table.
-```
+---
 
 ## STEP 3: Claude CLI: architecture doc (tonight)
 
@@ -102,7 +53,12 @@ handle time) and a rough impact estimate with stated assumptions; governance
 controls per layer; risks and mitigations. Include one Mermaid diagram. Specific
 to our stack, no filler. Use the governance table below as input:
 <paste ChatGPT's step 2 output here>
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_A.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/A_claude-cli.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
+
+---
 
 ## STEP 4: Claude CLI: contracts (tonight / before B needs them)
 
@@ -131,7 +87,12 @@ Create in /contracts, without touching /frontend or /backend/nlq:
 4. mock/*.json: one mock file per endpoint with realistic, believable Canadian
    collections data (10 customers, varied DPD buckets, one hardship case).
 Keep it minimal and consistent: these are the source of truth for both of us.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_A.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/A_claude-cli.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
+
+---
 
 ## STEP 5: Claude CLI: data pipeline (Build Day 1 AM, once real data is in data/raw)
 
@@ -156,7 +117,12 @@ duplicates, ID formats) and write docs/DATA_PROFILE.md. Then implement
 Add pytest tests (dup customers, missing IDs, negative balances, DPD outliers).
 Commit after each stage. At the end, tell me when the gold DB is ready to share
 with my teammate.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_A.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/A_claude-cli.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
+
+---
 
 ## STEP 6: Claude CLI: feature store + model + NBA (Build Day 1 PM - Day 2 AM)
 
@@ -190,7 +156,12 @@ Expose via /backend/api (FastAPI) exactly per contracts/api.md: /nba/queue,
 /nba/{id}, /nba/{id}/decision, /governance/audit, /governance/contract,
 /dq/report, /customers/{id}/c360. Add smoke tests per endpoint. If anything
 requires a contract change, stop and tell me.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_A.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/A_claude-cli.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
+
+---
 
 ## STEP 7: Claude CLI: review B's PRs (each time)
 
@@ -201,40 +172,10 @@ table/column allow-list and enforced LIMIT; no raw string interpolation of
 user input into SQL; no protected/PII columns exposed; no hard-coded keys;
 loading/empty/error states exist; refusal path works. List issues by severity
 with file:line. Don't rewrite anything.
+
+
+REPORTING (mandatory): when finished, and at each milestone or blocker, first read the latest docs/reports/INSTRUCTIONS_A.md and follow it, then append an entry (template in docs/reports/README.md) to docs/reports/A_claude-cli.md, then commit and push it: git add docs/reports && git commit -m "report" && git pull --rebase origin main && git push origin HEAD:main. Include real numbers, errors and any contract changes you need.
 ```
 
-## STEP 8: Antigravity: parallel agents (run in separate agents; Day 1 PM onward)
+---
 
-```
-Agent 1 (tests): In /backend/pipeline, write pytest tests for edge cases:
-duplicate customers across sources, missing IDs, inconsistent date formats,
-negative balances, DPD outliers, name variants (e.g. "Robert"/"Bob", casing,
-accents). Run them and report failures; don't change pipeline code, only tests.
-Agent 2 (labels): Read 40 random agent_notes and call_transcripts from
-/data/raw and write data/labels/hardship_labels.csv with columns
-(source_id, hardship_signal clear|possible|severe, stated_delay_reason,
-dispute_flag) so we can evaluate the LLM feature extractor. Mark uncertain ones.
-Agent 3 (e2e): Once app is running at http://localhost:5173, use the browser:
-open a customer C360, ask 3 questions, ask 1 out-of-scope question, approve one
-NBA and override another. Screenshot each step. Report console errors, broken
-states and slow calls.
-```
-
-## STEP 9: ChatGPT: pitch, video script, judge Q&A (Day 2 PM)
-
-```
-[Paste SHARED CONTEXT first]
-Our solution: C360 golden record with identity resolution and lineage; "Collections
-Ask" NL-to-SQL that shows its SQL and refuses out-of-scope questions; Next Best
-Action with feature store, promise-to-pay break model, plain-English
-explanations, hardship routing to humans, audit log. Write:
-1. A 10-slide deck outline (title, content bullets, the visual on each), mapping
-   each slide to a judging criterion. Open with a customer story scattered across
-   9 systems.
-2. A 5-minute demo-video script with timestamps, what's on screen, narration.
-3. Business-case numbers with explicit assumptions (cure-rate uplift, handle-time
-   reduction, contact-cost saving) as a simple table.
-4. 15 tough judge questions (fairness, hallucinated SQL, privacy, scale to a
-   real bank, ROI, why not just a dashboard) with crisp 2-3 sentence answers.
-Facts I'll give you for the numbers: <paste real DQ report + model AUC + benchmark pass rate>.
-```
