@@ -1,0 +1,16 @@
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+dist/
+*.duckdb
+*.duckdb.wal
+data/rag/
+data/raw/*
+data/curated/*
+data/gold/*
+!data/raw/.gitkeep
+!data/curated/.gitkeep
+!data/gold/.gitkeep
