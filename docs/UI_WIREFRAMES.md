@@ -26,7 +26,8 @@
     - `Collections Ask` (`/ask`)
     - `Next Best Action` (`/nba`)
     - `Governance & Trust` (`/governance`)
-  - Global Search / Quick Customer Switcher: Fast jump input to any Customer Golden ID (e.g., `CUST-10492`).
+  - Role Switcher (`X-User-Role`): `agent` | `specialist` | `supervisor` (enforces RBAC; hardship accounts require `specialist`).
+  - Global Search / Quick Customer Switcher: Fast jump input to any Customer Golden ID (e.g., `G-004817`).
   - Environment Chip: "Mock Data Active" or "Live Backend Connected".
 - **Persistent Bottom Legal Footer (Height: 40px):**
   - Centered text: `Educational prototype — synthetic data only. Not endorsed by financial institutions.`
@@ -69,7 +70,7 @@ As a frontline collections specialist or recovery agent, I need a single unified
 | | Visa Infinite   *4829       $5,420    $850      64    |  | - Core Banking: CB-98210 (99.8%)    | |
 | | Personal Loan   *1092       $8,860    $1,290    45    |  | - Credit Card:  CC-44829 (99.4%)    | |
 | | Everyday Cheq   *3301       $310      $0         0    |  | - Loan System:  LN-01092 (99.1%)    | |
-| |                                                       |  | Rule: Exact SIN + Name/Address Fuzzy| |
+| |                                                       |  | Rule: Deterministic IDs, then Fuzzy | |
 | | Total Exposure: 3 Products | $2,140 Overdue           |  | Quality Checks: 12/12 Passed [View] | |
 | +-------------------------------------------------------+  +-------------------------------------+ |
 |                                                                                                    |
@@ -111,7 +112,7 @@ As a frontline collections specialist or recovery agent, I need a single unified
    - Interaction: Clicking "Read Note" or "View Transcript" opens a slide-over modal displaying conversation turns or raw agent notes with redactions.
 4. **Identity Lineage Panel:**
    - Tree/Graph list: Source system keys mapped into the Golden Customer Record.
-   - Match Confidence: Percentage bar (e.g. 99.4%) with method label (Deterministic SIN match, Probabilistic Name + DOB + Address match).
+   - Match Confidence: Percentage bar with method label (Deterministic keys [shared IDs, normalised name + DOB/phone], then fuzzy matching).
    - Data Quality Check Badge: Count of passed validation rules (e.g. 12/12 rules passed).
 
 ### 2.5 States
@@ -120,9 +121,8 @@ As a frontline collections specialist or recovery agent, I need a single unified
 - **Error:** "Unable to retrieve customer 360 profile. [Retry Button]".
 
 ### 2.6 API Calls Needed
-- `GET /customers/{id}/c360`: Fetches profile, aggregated balances, product holdings, lineage, and consent.
-- `GET /customers/{id}/timeline`: Fetches chronological interaction history.
-- `GET /transcripts/{transcript_id}`: Fetches speaker-turn dialog for modal view.
+- `GET /customers/{golden_id}/c360`: Fetches profile, aggregated balances, product holdings, identity lineage, consent, and `contact_timeline` (chronological interaction history embedded; no separate timeline endpoint).
+- `GET /transcripts/{transcript_id}`: Fetches speaker-turn dialog and metadata for the transcript modal.
 
 ---
 
@@ -313,9 +313,13 @@ As a collections strategy manager or senior collector, I need a prioritized work
 
 ### 4.6 API Calls Needed
 - `GET /nba/queue`: Returns prioritized accounts with recommended treatments, break probabilities, top drivers, and status.
-- `POST /nba/{id}/decision`:
-  - Request: `{ action: "approve" | "override", reason?: string, alternative_treatment?: string, notes?: string }`
-  - Response: `{ status: "success", decision_id: string, logged_at: string }`
+- `GET /nba/{decision_id}`: Fetches detailed explanation, top SHAP drivers, feature values, and recommendation metadata for the slide-over drawer.
+- `POST /nba/{decision_id}/decision`:
+  - Headers: `X-User-Role: agent | specialist | supervisor`, `X-User-Id: AG-0620`
+  - Request (approve): `{"action": "approve"}`
+  - Request (override): `{"action": "override", "reason": "Customer requested alternative terms", "new_treatment": "payment_plan"}`
+  - Response: `{"decision_id": "NBA-0005", "status": "overridden", "final_treatment": "payment_plan", "reviewed_by": "AG-0711", "reviewed_at": "2026-10-02T09:40:00-04:00", "override_reason": "...", "audit_id": "AUD-0103"}`
+  - Error: 409 `hardship_requires_specialist` when non-specialist role attempts decision on hardship case.
 
 ---
 
@@ -350,7 +354,7 @@ As a risk executive, internal auditor, or compliance officer, I need an interact
 | | total_overdue_amt  DECIMAL     0%      Financial       Yes                 Value >= 0          | |
 | | max_dpd            INTEGER     0%      Operational     Yes                 Range: [0, 365]     | |
 | | hardship_signal    BOOLEAN     0%      Sensitive       Specialist Only     Boolean Valid       | |
-| | sin_hash           VARCHAR     0%      Confidential    STRICTLY BANNED     Masked SHA-256      | |
+| | ssn_sin_excluded   VARCHAR     0%      Confidential    STRICTLY BANNED     Excluded from Gold  | |
 | +------------------------------------------------------------------------------------------------+ |
 |                                                                                                    |
 | +------------------------------------------------------------------------------------------------+ |
@@ -431,18 +435,18 @@ As a risk executive, internal auditor, or compliance officer, I need an interact
 
 ## 6. Comprehensive API Call Matrix
 
-| Screen | Endpoint | HTTP Method | Request Body / Query Params | Response Objects / Keys |
+| Screen | Endpoint | HTTP Method | Request Body / Query Params / Headers | Response Objects / Keys |
 |---|---|---|---|---|
-| **C360** | `/customers/{id}/c360` | `GET` | `id` (path) | `{ customer_id, name, segment, total_balance, total_overdue, max_dpd, hardship_flag, hardship_reason, consent: [], products: [], lineage: { source_systems: [], match_confidence, quality_passed } }` |
-| **C360** | `/customers/{id}/timeline` | `GET` | `id` (path), `channel`, `outcome` | `{ customer_id, interactions: [ { id, timestamp, channel, direction, outcome, note_id, transcript_id, agent_id } ] }` |
-| **C360** | `/transcripts/{id}` | `GET` | `id` (path) | `{ transcript_id, customer_id, timestamp, turns: [ { speaker, text } ] }` |
-| **Ask** | `/ask` | `POST` | `{ query: string, filters?: object }` | `{ answer: string, sql: string, tables_used: string[], understood_as: Token[], followups: string[], citations: Citation[], refused: boolean, refusal_reason: string \| null, data?: any[] }` |
-| **NBA** | `/nba/queue` | `GET` | `status`, `risk_tier`, `sort_by` | `{ queue: [ { customer_id, name, overdue_amt, break_probability, recommended_treatment, recommended_channel, recommended_timing, hardship_flag, status, top_drivers: [] } ], total_count, model_version }` |
-| **NBA** | `/nba/{id}/decision` | `POST` | `{ action: "approve" \| "override", reason?: string, alternative_treatment?: string, notes?: string }` | `{ success: boolean, decision_id: string, logged_at: string }` |
+| **C360** | `/customers/{golden_id}/c360` | `GET` | `golden_id` (path) | `{ golden_id, display_name, segment, province, preferred_language, customer_since, consent: {}, summary: {}, products: [], contact_timeline: [], identity: {}, quality: [], break_prob, current_decision_id }` |
+| **C360** | `/transcripts/{transcript_id}` | `GET` | `transcript_id` (path) | `{ transcript_id, golden_id, customer_name, channel, timestamp, agent_id, turns: [{ speaker, text }], key_phrases: [], hardship_detected }` |
+| **Ask** | `/ask` | `POST` | Body: `{"question": string, "context"?: {"golden_id": string}}` | `{ question, answer, sql, tables_used, understood_as: [], columns: [], rows: [[]], row_count, followups: [], citations: [], refused: boolean, refusal_reason: string \| null, route: string }` |
+| **NBA** | `/nba/queue` | `GET` | `status`, `treatment`, `hardship_only`, `page`, `page_size` | `{ items: [{ decision_id, golden_id, display_name, products: [], bucket, max_dpd, total_overdue, break_prob, top_reason, treatment, channel, recommended_time, requires_specialist, status, hardship_flag }], total, page, page_size }` |
+| **NBA** | `/nba/{decision_id}` | `GET` | `decision_id` (path) | `{ decision_id, golden_id, display_name, bucket, max_dpd, break_prob, treatment, channel, recommended_time, requires_specialist, status, hardship_flag, explanation, drivers: [], consent: {}, model_version }` |
+| **NBA** | `/nba/{decision_id}/decision` | `POST` | Headers: `X-User-Role`, `X-User-Id`<br>Body: `{"action": "approve"}` or `{"action": "override", "reason": string, "new_treatment": string}` | `{ decision_id, status, final_treatment, reviewed_by, reviewed_at, override_reason, audit_id }`<br>*(Throws 409 `hardship_requires_specialist` if role != specialist on hardship accounts)* |
 | **Governance** | `/governance/contract` | `GET` | None | `{ product_name, version, owner, freshness_sla, allowed_uses: [], prohibited_uses: [], schema: [] }` |
-| **Governance** | `/dq/report` | `GET` | None | `{ overall_score, total_rules, passed_count, failed_count, rules: [ { rule_name, table, type, pass_rate, status, last_run } ] }` |
-| **Governance** | `/governance/audit` | `GET` | `page`, `action_type`, `customer_id` | `{ entries: [ { id, timestamp, customer_id, actor, action, reason, model_version } ], total_count }` |
-| **Governance** | `/governance/fairness`| `GET` | None | `{ excluded_attributes: [], tests_passed: boolean, hitl_stats: { total_scored, approved_pct, overridden_pct, hardship_routed_count } }` |
+| **Governance** | `/dq/report` | `GET` | None | `{ dataset, run_at, contract_version, summary: {}, row_counts: {}, rules: [], schema_drift: [], identity_resolution: {} }` |
+| **Governance** | `/governance/audit` | `GET` | `decision_id`, `golden_id`, `event`, `page`, `page_size` | `{ items: [{ audit_id, at, event, decision_id, golden_id, actor, actor_role, model_version, detail, outcome }], total, page, page_size }` |
+| **Governance** | `/governance/fairness`| `GET` | None | `{ model_version, audit_date, protected_attributes_excluded: [], demographic_parity_tests: [], hitl_metrics: {} }` |
 
 ---
 
