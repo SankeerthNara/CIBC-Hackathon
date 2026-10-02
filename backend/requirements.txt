@@ -1,0 +1,14 @@
+duckdb
+fastapi
+uvicorn
+pandas
+lightgbm
+scikit-learn
+shap
+sqlglot
+pydantic
+python-dotenv
+pytest
+pyyaml
+rapidfuzz
+httpx
