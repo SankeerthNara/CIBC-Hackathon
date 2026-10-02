@@ -4,6 +4,18 @@ Newest entry first. Follow the template and rules in [README.md](README.md).
 
 <!-- add entries below this line -->
 
+## [2026-10-02 18:10 IST] Claude CLI | Design submission deck (Resolve360) | STATUS: DONE
+**Branch / commit:** a/design-submission @ 86468da (PR not yet merged)
+**Read instructions version:** A-I1
+**What I did:**
+- Built pitch/design_submission/HackIt_Resolve360_Design.pptx (17 slides) + PDF exported by PowerPoint, from build/build_deck.js (pptxgenjs)
+- Content: problem (R. Mitchell story), insight (can't pay vs won't pay), 5 differentiators, architecture, L1 trust score, L2 governed-metric Ask, L3 affordability-first NBA, hardship score, affordability, live re-decisioning, AI engines, governance + override intelligence, 36h plan, evaluation targets, business value, demo script
+**Results:** validate.py passed; PowerPoint opens it and exported the PDF; all 17 slides rendered and visually checked
+**Problems / blockers:** first build would not open in PowerPoint (negative-height connector lines); fixed. Affordability formula refined vs chat: ratio = (3 x capacity + buffer) / arrears; M. Roy numbers updated accordingly (income $5,800, ratio 1.05).
+**Contract changes needed:** later: trust score, hardship score, affordability fields and /events/contact-completed will need adding to contracts/api.md at build time
+**Questions for lead:** none
+**Next I plan to do:** user review and edits, then submit before 21:00
+
 ## [2026-10-02 17:25 IST] Claude CLI | Lead verification of all branches | STATUS: DONE
 **Branch / commit:** a/contracts @ 2dd81a0; main reports
 **Read instructions version:** A-I1
