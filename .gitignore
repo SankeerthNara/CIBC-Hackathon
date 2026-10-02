@@ -14,3 +14,5 @@ data/gold/*
 !data/raw/.gitkeep
 !data/curated/.gitkeep
 !data/gold/.gitkeep
+pitch/design_submission/build/render/
+pitch/design_submission/build/package-lock.json
