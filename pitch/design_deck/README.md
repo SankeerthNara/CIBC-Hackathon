@@ -10,8 +10,8 @@
 
 ### The Frontline Problem
 - **Data Fragmentation:** Collections agents navigate up to 9 siloed systems (core banking, credit cards, mortgages, auto loans, collections CRM, dialer logs, bureau scores) to piece together a single customer's situation.
-- **Lost Recovery Time:** Average call handle time is ~10 minutes, with over 3 minutes wasted solely on manual lookup and cross-referencing account numbers.
-- **High Broken Commitments:** Blanket, uncoordinated outreach yields a 40% Promise-to-Pay (PTP) break rate because outreach timing and channel are disconnected from customer context.
+- **Lost Recovery Time:** Average call handle time is ~10 minutes, with over 3 minutes wasted solely on manual lookup and cross-referencing account numbers (assumed baseline hypothesis).
+- **High Broken Commitments:** A 40% Promise-to-Pay (PTP) break rate (assumed baseline) because outreach timing and channel are disconnected from customer context.
 - **Vulnerability Blind Spots:** Hardship disclosures (medical emergencies, job disruptions) buried in unstructured call transcripts are missed, exposing the bank to regulatory sanctions and damaging customer trust.
 
 ### Our Solution: One Vertical Slice Across 3 Governed Layers
@@ -30,7 +30,7 @@
 - **Source Ingestion:** Ingests core banking, loans, cards, contact history, bureau data, agent notes, and speech transcripts.
 - **Layer 1 (Data Product Factory - Owner A):**
   - Raw -> Curated (Silver) -> Golden C360.
-  - Deterministic SIN hashing + RapidFuzz probabilistic matching (99%+ match confidence).
+  - Deterministic keys (shared IDs, normalised name + date of birth/phone where present), then fuzzy matching (with lineage source IDs).
   - Formal Data Contract (`contracts/data_contract.yaml`) + Automated Data Quality assertions (`dq_report.json`).
 - **Layer 2 (Insight & NLP - Owner B):**
   - Schema allow-list parser & semantic translation.
@@ -94,7 +94,7 @@
 **Headline:** Quantifiable Recovery ROI with an Enterprise Production Path
 
 ### Target Operational KPIs (Synthetic Data Baseline)
-| Collections KPI | Baseline Metric | Operational Mechanism | Target Improvement |
+| Collections KPI | Assumed baseline | Operational Mechanism | Target Improvement |
 |---|---|---|---|
 | **PTP Kept Rate** | 60% | Early intervention on high break-risk accounts; dynamic reminder timing | **+5% (to 65%)** |
 | **Contact Efficiency** | 20% (1 in 5 connect) | Optimized channel selection based on historical response times | **+15% relative lift** |

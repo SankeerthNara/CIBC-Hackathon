@@ -17,7 +17,7 @@
 
 2. **Layer 1: Data Product Factory (Owner: Person A):**
    - Medallion pipeline: `raw` (DuckDB) -> `curated` (Silver typed/deduped) -> `gold.c360` (Customer golden records).
-   - Identity Resolution: Deterministic SIN hashing + RapidFuzz probabilistic matching (producing `match_confidence` and lineage source IDs).
+   - Identity Resolution: Deterministic keys (shared IDs, normalised name + date of birth/phone where present), then fuzzy matching (producing `match_confidence` and lineage source IDs).
    - Data Contract & Data Quality: Enforced via `contracts/data_contract.yaml`; outputs automated `dq_report.json`.
 
 3. **Layer 2: Insight & NLP — "Collections Ask" (Owner: Person B):**

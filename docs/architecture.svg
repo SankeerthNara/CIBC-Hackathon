@@ -18,17 +18,14 @@
     <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 8 5 L 0 9 z" fill="#C73E1D"/>
     </marker>
-    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#D97706"/>
-    </marker>
   </defs>
 
   <!-- ==================== HEADER BAR ==================== -->
   <rect x="30" y="24" width="1540" height="74" rx="10" fill="url(#headerGrad)" filter="url(#cardShadow)"/>
-  <text x="56" y="55" fill="#FFFFFF" font-family="'Source Serif Pro', Georgia, serif" font-size="24" font-weight="700" letter-spacing="0.5">Apex Collections 360 + Ask + Next Best Action</text>
-  <text x="56" y="80" fill="#FFD580" font-size="13" font-weight="500">Governed AI Vertical Slice for Modern Bank Debt Resolution | Educational Prototype (Synthetic Data)</text>
-  <rect x="1350" y="42" width="190" height="36" rx="6" fill="#C73E1D"/>
-  <text x="1445" y="65" fill="#FFFFFF" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="0.5">CIBC HACKATHON 2026</text>
+  <text x="56" y="55" fill="#FFFFFF" font-family="'Source Serif Pro', Georgia, serif" font-size="24" font-weight="700" letter-spacing="0.5">Apex Collections 360: System Architecture</text>
+  <text x="56" y="80" fill="#FFD580" font-size="13" font-weight="500">Governed AI Vertical Slice for Bank Collections | Educational Prototype (Synthetic Data Only)</text>
+  <rect x="1330" y="42" width="210" height="36" rx="6" fill="#C73E1D"/>
+  <text x="1435" y="65" fill="#FFFFFF" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="0.5">SYSTEM DESIGN PHASE</text>
 
   <!-- ==================== COLUMN 1: SOURCES ==================== -->
   <rect x="30" y="118" width="240" height="690" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#cardShadow)"/>
@@ -41,43 +38,43 @@
   <rect x="46" y="176" width="208" height="110" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"/>
   <rect x="46" y="176" width="6" height="110" rx="3" fill="#141B2D"/>
   <text x="62" y="200" fill="#141B2D" font-size="13" font-weight="700">Core Banking &amp; Credit</text>
-  <text x="62" y="222" fill="#475569" font-size="11">? customers.csv (PII/IDs)</text>
-  <text x="62" y="240" fill="#475569" font-size="11">? credit_cards.csv (Balances)</text>
-  <text x="62" y="258" fill="#475569" font-size="11">? loans.csv (DPD &amp; Terms)</text>
-  <text x="62" y="276" fill="#475569" font-size="11">? deposits.csv (Liquidity)</text>
+  <text x="62" y="222" fill="#475569" font-size="11">- customers.csv (IDs, Demographics)</text>
+  <text x="62" y="240" fill="#475569" font-size="11">- credit_cards.csv (Balances)</text>
+  <text x="62" y="258" fill="#475569" font-size="11">- loans.csv (DPD &amp; Terms)</text>
+  <text x="62" y="276" fill="#475569" font-size="11">- deposits.csv (Liquidity)</text>
 
   <!-- S2 -->
   <rect x="46" y="300" width="208" height="100" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"/>
   <rect x="46" y="300" width="6" height="100" rx="3" fill="#141B2D"/>
   <text x="62" y="324" fill="#141B2D" font-size="13" font-weight="700">Collections Operations</text>
-  <text x="62" y="346" fill="#475569" font-size="11">? collections_cases.csv</text>
-  <text x="62" y="364" fill="#475569" font-size="11">? contact_history.csv (Outcomes)</text>
-  <text x="62" y="382" fill="#475569" font-size="11">? ptp_commitments.csv</text>
+  <text x="62" y="346" fill="#475569" font-size="11">- collections_cases.csv</text>
+  <text x="62" y="364" fill="#475569" font-size="11">- contact_history.csv (Outcomes)</text>
+  <text x="62" y="382" fill="#475569" font-size="11">- promises_to_pay.csv</text>
 
   <!-- S3 -->
   <rect x="46" y="414" width="208" height="116" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"/>
   <rect x="46" y="414" width="6" height="116" rx="3" fill="#C73E1D"/>
   <text x="62" y="438" fill="#C73E1D" font-size="13" font-weight="700">Unstructured &amp; Voice</text>
-  <text x="62" y="460" fill="#475569" font-size="11">? agent_notes.txt (Free-text)</text>
-  <text x="62" y="478" fill="#475569" font-size="11">? call_transcripts.json (Turns)</text>
-  <text x="62" y="496" fill="#475569" font-size="11">? sentiment &amp; tone tags</text>
-  <text x="62" y="514" fill="#059669" font-size="10" font-weight="600">?? Rich customer hardship context</text>
+  <text x="62" y="460" fill="#475569" font-size="11">- agent_notes.txt (Free-text)</text>
+  <text x="62" y="478" fill="#475569" font-size="11">- call_transcripts.json (Turns)</text>
+  <text x="62" y="496" fill="#475569" font-size="11">- sentiment &amp; tone tags</text>
+  <text x="62" y="514" fill="#059669" font-size="10" font-weight="600">Qualitative customer hardship context</text>
 
   <!-- S4 -->
   <rect x="46" y="544" width="208" height="84" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"/>
   <rect x="46" y="544" width="6" height="84" rx="3" fill="#141B2D"/>
   <text x="62" y="568" fill="#141B2D" font-size="13" font-weight="700">External Bureau Data</text>
-  <text x="62" y="590" fill="#475569" font-size="11">? bureau_scores.csv (Equifax/TU)</text>
-  <text x="62" y="608" fill="#475569" font-size="11">? external_delinquency_flags</text>
+  <text x="62" y="590" fill="#475569" font-size="11">- bureau_scores.csv (Equifax/TU)</text>
+  <text x="62" y="608" fill="#475569" font-size="11">- external_delinquency_flags</text>
 
   <!-- Callout Sources -->
   <rect x="46" y="644" width="208" height="144" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
   <text x="62" y="668" fill="#1E40AF" font-size="11" font-weight="700">MULTI-SOURCE CHALLENGE</text>
-  <text x="62" y="688" fill="#1E3A8A" font-size="10.5">Customer info historically fragmented</text>
-  <text x="62" y="704" fill="#1E3A8A" font-size="10.5">across 9 siloed platforms.</text>
-  <text x="62" y="726" fill="#1E3A8A" font-size="10.5">?? PII masked upon ingestion</text>
-  <text x="62" y="744" fill="#1E3A8A" font-size="10.5">?? Schema validation active</text>
-  <text x="62" y="762" fill="#1E3A8A" font-size="10.5">?? DuckDB raw database target</text>
+  <text x="62" y="688" fill="#1E3A8A" font-size="10.5">Customer records historically siloed</text>
+  <text x="62" y="704" fill="#1E3A8A" font-size="10.5">across 9 disconnected platforms.</text>
+  <text x="62" y="726" fill="#1E3A8A" font-size="10.5">- PII masked upon ingestion</text>
+  <text x="62" y="744" fill="#1E3A8A" font-size="10.5">- Contract schema validated</text>
+  <text x="62" y="762" fill="#1E3A8A" font-size="10.5">- Read-only DuckDB engine</text>
 
   <!-- ==================== COLUMN 2: LAYER 1 (DATA PRODUCT FACTORY) ==================== -->
   <rect x="300" y="118" width="310" height="690" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#cardShadow)"/>
@@ -91,7 +88,7 @@
   <!-- Raw Stage -->
   <rect x="318" y="174" width="274" height="64" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
   <text x="334" y="196" fill="#141B2D" font-size="13" font-weight="700">1. Raw Schema (DuckDB)</text>
-  <text x="334" y="214" fill="#64748B" font-size="11">Exact ingestion of CSV &amp; JSON files as-is.</text>
+  <text x="334" y="214" fill="#64748B" font-size="11">Exact ingestion of CSV and JSON files.</text>
   <text x="334" y="228" fill="#64748B" font-size="10.5">Zero transformation; immutable audit base.</text>
 
   <!-- Arrow -->
@@ -100,41 +97,41 @@
   <!-- Curated Stage -->
   <rect x="318" y="260" width="274" height="84" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
   <text x="334" y="282" fill="#141B2D" font-size="13" font-weight="700">2. Curated / Silver Layer</text>
-  <text x="334" y="300" fill="#64748B" font-size="11">Strict typing, standardization &amp; deduplication.</text>
+  <text x="334" y="300" fill="#64748B" font-size="11">Strict typing, standardization and deduplication.</text>
   <text x="334" y="316" fill="#64748B" font-size="11">Quarantine: Bad records to reject table.</text>
-  <text x="334" y="332" fill="#059669" font-size="10.5" font-weight="600">?? Standardized contact timestamps &amp; DPD</text>
+  <text x="334" y="332" fill="#059669" font-size="10.5" font-weight="600">Standardized contact timestamps and DPD</text>
 
   <!-- Arrow -->
-  <line x1="455" y1="344" x2="455" y2="364" stroke="#141B2D" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="455" y1="344" x2="455" y2="362" stroke="#141B2D" stroke-width="2" marker-end="url(#arrow)"/>
 
-  <!-- Golden C360 Stage -->
-  <rect x="318" y="366" width="274" height="120" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
-  <text x="334" y="390" fill="#92400E" font-size="13" font-weight="800">3. Golden C360 &amp; Identity Map</text>
-  <text x="334" y="410" fill="#141B2D" font-size="11" font-weight="600">Deterministic Key (SIN Hash) Match</text>
-  <text x="334" y="426" fill="#141B2D" font-size="11" font-weight="600">+ RapidFuzz (Name, Address, Phone)</text>
-  <text x="334" y="444" fill="#4B5563" font-size="10.5">Outputs: golden_id, match_confidence (0-100%),</text>
-  <text x="334" y="458" fill="#4B5563" font-size="10.5">multi-source lineage tracking &amp; rollups.</text>
-  <rect x="334" y="464" width="180" height="16" rx="3" fill="#D97706"/>
-  <text x="424" y="476" fill="#FFFFFF" font-size="9.5" font-weight="700" text-anchor="middle">CERTIFIED GOLDEN PRODUCT</text>
+  <!-- Golden C360 Stage (Expanded height: 130px to prevent overlap) -->
+  <rect x="318" y="364" width="274" height="130" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="334" y="386" fill="#92400E" font-size="13" font-weight="800">3. Golden C360 &amp; Identity Map</text>
+  <text x="334" y="404" fill="#141B2D" font-size="10.5" font-weight="600">Deterministic keys (shared IDs, name + phone/DOB)</text>
+  <text x="334" y="420" fill="#141B2D" font-size="10.5" font-weight="600">+ RapidFuzz similarity clustering</text>
+  <text x="334" y="438" fill="#4B5563" font-size="10">Outputs: golden_id, match confidence score,</text>
+  <text x="334" y="452" fill="#4B5563" font-size="10">multi-source lineage tracking and rollups.</text>
+  <rect x="334" y="462" width="180" height="20" rx="4" fill="#D97706"/>
+  <text x="424" y="476" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">CERTIFIED GOLDEN RECORD</text>
 
   <!-- Contract & DQ Box -->
-  <rect x="318" y="500" width="274" height="106" rx="8" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.2"/>
-  <text x="334" y="522" fill="#0F172A" font-size="12" font-weight="700">Governance &amp; DQ Engine</text>
-  <text x="334" y="540" fill="#475569" font-size="10.5">? contracts/data_contract.yaml</text>
-  <text x="334" y="556" fill="#475569" font-size="10.5">? Uniqueness, Not-Null, DPD [0-365]</text>
-  <text x="334" y="572" fill="#475569" font-size="10.5">? Automated Schema Drift Detection</text>
-  <text x="334" y="588" fill="#059669" font-size="10.5" font-weight="600">?? Emits dq_report.json (99.4% pass)</text>
+  <rect x="318" y="504" width="274" height="104" rx="8" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.2"/>
+  <text x="334" y="524" fill="#0F172A" font-size="12" font-weight="700">Governance &amp; DQ Engine</text>
+  <text x="334" y="542" fill="#475569" font-size="10.5">- contracts/data_contract.yaml</text>
+  <text x="334" y="558" fill="#475569" font-size="10.5">- Uniqueness, Not-Null, DPD [0-365]</text>
+  <text x="334" y="574" fill="#475569" font-size="10.5">- Automated Schema Drift Detection</text>
+  <text x="334" y="592" fill="#059669" font-size="10.5" font-weight="600">Emits dq_report.json (Target: 95%+ pass)</text>
 
   <!-- AI Helper Box L1 -->
-  <rect x="318" y="622" width="274" height="166" rx="8" fill="#FEF2F2" stroke="#FECACA" stroke-width="1.2"/>
-  <rect x="328" y="632" width="130" height="20" rx="4" fill="#C73E1D"/>
-  <text x="393" y="646" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">AI HELPER AT LAYER 1</text>
-  <text x="334" y="670" fill="#141B2D" font-size="11" font-weight="700">LLM Pipeline Accelerator:</text>
-  <text x="334" y="688" fill="#475569" font-size="10.5">? Proposes source-to-target field mapping</text>
-  <text x="334" y="704" fill="#475569" font-size="10.5">? SQL codegen for transformations</text>
-  <text x="334" y="720" fill="#475569" font-size="10.5">? Summarizes upstream schema drifts</text>
-  <text x="334" y="736" fill="#475569" font-size="10.5">? Anomaly detection on DPD &amp; balances</text>
-  <text x="334" y="756" fill="#C73E1D" font-size="10" font-weight="700">Rule: Human reviews AI code before commit</text>
+  <rect x="318" y="620" width="274" height="170" rx="8" fill="#FEF2F2" stroke="#FECACA" stroke-width="1.2"/>
+  <rect x="328" y="630" width="130" height="20" rx="4" fill="#C73E1D"/>
+  <text x="393" y="644" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">AI HELPER AT LAYER 1</text>
+  <text x="334" y="668" fill="#141B2D" font-size="11" font-weight="700">LLM Pipeline Accelerator:</text>
+  <text x="334" y="686" fill="#475569" font-size="10.5">- Proposes source-to-target field mapping</text>
+  <text x="334" y="702" fill="#475569" font-size="10.5">- SQL codegen for transformations</text>
+  <text x="334" y="718" fill="#475569" font-size="10.5">- Summarizes upstream schema drifts</text>
+  <text x="334" y="734" fill="#475569" font-size="10.5">- Anomaly detection on DPD &amp; balances</text>
+  <text x="334" y="756" fill="#C73E1D" font-size="10" font-weight="700">Principle: Human reviews AI code before commit</text>
 
   <!-- ==================== COLUMN 3: LAYER 2 & LAYER 3 (AI ENGINES) ==================== -->
   <!-- LAYER 2 (TOP HALF) -->
@@ -148,27 +145,27 @@
   <!-- L2 Submodules -->
   <rect x="656" y="170" width="204" height="124" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
   <text x="668" y="190" fill="#141B2D" font-size="12" font-weight="700">NL-to-SQL Engine</text>
-  <text x="668" y="208" fill="#475569" font-size="10.5">? Schema allow-list parser</text>
-  <text x="668" y="224" fill="#475569" font-size="10.5">? LLM generates DuckDB SQL</text>
-  <text x="668" y="240" fill="#C73E1D" font-size="10.5" font-weight="700">? sqlglot safety guard</text>
-  <text x="668" y="256" fill="#475569" font-size="10">   - SELECT only (no DDL/DML)</text>
-  <text x="668" y="270" fill="#475569" font-size="10">   - Enforced LIMIT (50/200)</text>
-  <text x="668" y="284" fill="#475569" font-size="10">   - Blocks protected attributes</text>
+  <text x="668" y="208" fill="#475569" font-size="10.5">- Schema allow-list parser</text>
+  <text x="668" y="224" fill="#475569" font-size="10.5">- LLM generates DuckDB SQL</text>
+  <text x="668" y="240" fill="#C73E1D" font-size="10.5" font-weight="700">- sqlglot safety guard</text>
+  <text x="668" y="256" fill="#475569" font-size="10">   * SELECT only (no DDL/DML)</text>
+  <text x="668" y="270" fill="#475569" font-size="10">   * Enforced LIMIT (50/200)</text>
+  <text x="668" y="284" fill="#475569" font-size="10">   * Blocks protected attributes</text>
 
   <rect x="876" y="170" width="208" height="124" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
   <text x="888" y="190" fill="#141B2D" font-size="12" font-weight="700">RAG Knowledge Engine</text>
-  <text x="888" y="208" fill="#475569" font-size="10.5">? Agent notes &amp; transcripts</text>
-  <text x="888" y="224" fill="#475569" font-size="10.5">? Chunking by speaker turn</text>
-  <text x="888" y="240" fill="#475569" font-size="10.5">? Local vector index</text>
-  <text x="888" y="258" fill="#059669" font-size="10.5" font-weight="700">? Verifiable Citations</text>
-  <text x="888" y="274" fill="#475569" font-size="10">   - Source Doc ID + excerpt</text>
-  <text x="888" y="288" fill="#475569" font-size="10">   - Never hallucinates details</text>
+  <text x="888" y="208" fill="#475569" font-size="10.5">- Agent notes &amp; transcripts</text>
+  <text x="888" y="224" fill="#475569" font-size="10.5">- Chunking by speaker turn</text>
+  <text x="888" y="240" fill="#475569" font-size="10.5">- Local vector index</text>
+  <text x="888" y="258" fill="#059669" font-size="10.5" font-weight="700">- Verifiable Citations</text>
+  <text x="888" y="274" fill="#475569" font-size="10">   * Source Doc ID + excerpt</text>
+  <text x="888" y="288" fill="#475569" font-size="10">   * Never hallucinates facts</text>
 
   <!-- Router Box -->
   <rect x="656" y="304" width="428" height="66" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.2"/>
   <text x="670" y="324" fill="#92400E" font-size="12" font-weight="700">Intelligent Query Router &amp; Response Synthesizer</text>
   <text x="670" y="342" fill="#141B2D" font-size="10.5">Routes to SQL / RAG / Both | Extracts editable "Understood As" filter tokens</text>
-  <text x="670" y="358" fill="#141B2D" font-size="10.5">Generates insight text strictly from retrieved data rows + explicit refusal state.</text>
+  <text x="670" y="358" fill="#141B2D" font-size="10.5">Insight text strictly from retrieved data rows + clear refusal state on out-of-scope.</text>
 
   <!-- AI Helper Tag L2 -->
   <rect x="656" y="380" width="428" height="56" rx="6" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
@@ -187,30 +184,30 @@
   <!-- L3 Submodules -->
   <rect x="656" y="520" width="204" height="130" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
   <text x="668" y="540" fill="#141B2D" font-size="12" font-weight="700">Feature Store Registry</text>
-  <text x="668" y="558" fill="#475569" font-size="10.5">? SQL: dpd_max, utilization,</text>
+  <text x="668" y="558" fill="#475569" font-size="10.5">- SQL: dpd_max, utilization,</text>
   <text x="668" y="572" fill="#475569" font-size="10.5">  broken_ptp_90d, pay_delay</text>
-  <text x="668" y="590" fill="#C73E1D" font-size="10.5" font-weight="700">? LLM Extracted Features:</text>
-  <text x="668" y="606" fill="#475569" font-size="10">  - hardship_signal (bool)</text>
-  <text x="668" y="620" fill="#475569" font-size="10">  - stated_delay_reason</text>
-  <text x="668" y="634" fill="#475569" font-size="10">  - dispute_flag (bool)</text>
-  <text x="668" y="646" fill="#059669" font-size="9.5" font-weight="600">?? Evaluated on 20+ test labels</text>
+  <text x="668" y="590" fill="#C73E1D" font-size="10.5" font-weight="700">- LLM Extracted Features:</text>
+  <text x="668" y="606" fill="#475569" font-size="10">  * hardship_signal (flag)</text>
+  <text x="668" y="620" fill="#475569" font-size="10">  * stated_delay_reason</text>
+  <text x="668" y="634" fill="#475569" font-size="10">  * dispute_flag (bool)</text>
+  <text x="668" y="646" fill="#059669" font-size="9.5" font-weight="600">Evaluated against labelled set</text>
 
   <rect x="876" y="520" width="208" height="130" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
   <text x="888" y="540" fill="#141B2D" font-size="12" font-weight="700">PTP Break Model &amp; NBA</text>
-  <text x="888" y="558" fill="#475569" font-size="10.5">? LightGBM Classifier</text>
+  <text x="888" y="558" fill="#475569" font-size="10.5">- LightGBM Classifier</text>
   <text x="888" y="572" fill="#475569" font-size="10.5">  Predicts P(Break Commitment)</text>
-  <text x="888" y="590" fill="#141B2D" font-size="10.5" font-weight="700">? SHAP Explainability:</text>
+  <text x="888" y="590" fill="#141B2D" font-size="10.5" font-weight="700">- SHAP Explainability:</text>
   <text x="888" y="606" fill="#475569" font-size="10">  Top 3 decision drivers</text>
   <text x="888" y="620" fill="#475569" font-size="10">  Rendered in plain English</text>
-  <text x="888" y="638" fill="#D97706" font-size="10" font-weight="700">? Policy Optimization Rules</text>
+  <text x="888" y="638" fill="#D97706" font-size="10" font-weight="700">- Policy Optimization Rules</text>
   <text x="888" y="648" fill="#475569" font-size="9.5">Treatment, channel, timing</text>
 
   <!-- Safeguard Box -->
   <rect x="656" y="660" width="428" height="74" rx="8" fill="#FEF2F2" stroke="#F87171" stroke-width="1.2"/>
   <text x="670" y="680" fill="#991B1B" font-size="11.5" font-weight="800">HARDSHIP &amp; VULNERABILITY CIRCUIT BREAKER</text>
-  <text x="670" y="698" fill="#7F1D1D" font-size="10.5">If hardship_signal = true: Automated aggressive treatment is strictly blocked.</text>
+  <text x="670" y="698" fill="#7F1D1D" font-size="10.5">If hardship_signal = true: Automated aggressive outreach is strictly blocked.</text>
   <text x="670" y="714" fill="#7F1D1D" font-size="10.5">Account routed immediately to Accredited Specialist queue. Human review mandatory.</text>
-  <text x="670" y="728" fill="#7F1D1D" font-size="10" font-weight="600">Consent check verified (hours, channel opt-ins) before any action suggestion.</text>
+  <text x="670" y="728" fill="#7F1D1D" font-size="10" font-weight="600">Consent checks verified (hours, channel opt-ins) before action suggestion.</text>
 
   <!-- Audit L3 -->
   <rect x="656" y="744" width="428" height="52" rx="6" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1"/>
@@ -228,9 +225,9 @@
   <!-- FastAPI Box -->
   <rect x="1148" y="174" width="404" height="88" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
   <text x="1164" y="196" fill="#141B2D" font-size="13" font-weight="700">FastAPI Gateway (/contracts/api.md)</text>
-  <text x="1164" y="216" fill="#475569" font-size="11">? GET /customers/{id}/c360  ? POST /ask</text>
-  <text x="1164" y="232" fill="#475569" font-size="11">? GET /nba/queue  ? POST /nba/{id}/decision</text>
-  <text x="1164" y="248" fill="#475569" font-size="11">? GET /governance/audit  ? GET /dq/report</text>
+  <text x="1164" y="216" fill="#475569" font-size="11">- GET /customers/{golden_id}/c360  - POST /ask</text>
+  <text x="1164" y="232" fill="#475569" font-size="11">- GET /nba/queue  - POST /nba/{id}/decision</text>
+  <text x="1164" y="248" fill="#475569" font-size="11">- GET /governance/audit  - GET /dq/report</text>
 
   <!-- React Frontend UI -->
   <rect x="1148" y="274" width="404" height="376" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.5"/>
@@ -241,13 +238,13 @@
   <rect x="1164" y="330" width="372" height="66" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
   <text x="1178" y="350" fill="#141B2D" font-size="12" font-weight="700">1. Collections 360 View (/customer/:id)</text>
   <text x="1178" y="368" fill="#64748B" font-size="10.5">Customer header, consent chips, multi-product DPD table,</text>
-  <text x="1178" y="382" fill="#64748B" font-size="10.5">contact timeline &amp; interactive identity resolution lineage graph.</text>
+  <text x="1178" y="382" fill="#64748B" font-size="10.5">contact timeline and interactive identity resolution lineage.</text>
 
   <!-- UI Screen 2 -->
   <rect x="1164" y="404" width="372" height="66" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
   <text x="1178" y="424" fill="#141B2D" font-size="12" font-weight="700">2. Collections Ask Interface (/ask)</text>
   <text x="1178" y="442" fill="#64748B" font-size="10.5">Editable semantic tokens, DuckDB SQL inspection drawer,</text>
-  <text x="1178" y="456" fill="#64748B" font-size="10.5">RAG citations modal, follow-up chips &amp; clear refusal cards.</text>
+  <text x="1178" y="456" fill="#64748B" font-size="10.5">RAG citations modal, follow-up chips and clear refusal cards.</text>
 
   <!-- UI Screen 3 -->
   <rect x="1164" y="478" width="372" height="66" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
@@ -264,11 +261,11 @@
   <!-- UI Guarantees -->
   <rect x="1148" y="660" width="404" height="128" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
   <text x="1164" y="682" fill="#141B2D" font-size="11.5" font-weight="700">FRONTEND ARCHITECTURE STANDARDS</text>
-  <text x="1164" y="700" fill="#475569" font-size="10.5">? Responsive down to 375px mobile &amp; 1440px desktop</text>
-  <text x="1164" y="716" fill="#475569" font-size="10.5">? Every screen features Loading, Empty &amp; Error states</text>
-  <text x="1164" y="732" fill="#475569" font-size="10.5">? WCAG 2.1 AA accessible contrast (14:1 ratio navy on cream)</text>
-  <text x="1164" y="748" fill="#475569" font-size="10.5">? Optimistic UI updates with rollback on network failure</text>
-  <text x="1164" y="764" fill="#C73E1D" font-size="10.5" font-weight="700">? Persistent footer: "Educational prototype - synthetic data"</text>
+  <text x="1164" y="700" fill="#475569" font-size="10.5">- Responsive down to 375px mobile and 1440px desktop</text>
+  <text x="1164" y="716" fill="#475569" font-size="10.5">- Every screen features Loading, Empty and Error states</text>
+  <text x="1164" y="732" fill="#475569" font-size="10.5">- WCAG 2.1 AA accessible contrast (14:1 ratio navy on cream)</text>
+  <text x="1164" y="748" fill="#475569" font-size="10.5">- Optimistic UI updates with rollback on network failure</text>
+  <text x="1164" y="764" fill="#C73E1D" font-size="10.5" font-weight="700">Footer: "Educational prototype - synthetic data"</text>
 
   <!-- ==================== DATA FLOW ARROWS ==================== -->
   <!-- S1-S4 -> L1 Raw -->
@@ -279,15 +276,15 @@
 
   <!-- Unstructured to RAG (L2) -->
   <path d="M 254 440 Q 280 430 400 430 T 656 220" fill="none" stroke="#C73E1D" stroke-dasharray="5,4" stroke-width="2" marker-end="url(#arrowOrange)"/>
-  <text x="390" y="420" fill="#C73E1D" font-size="10" font-weight="700">Notes/Transcripts to RAG</text>
+  <text x="375" y="420" fill="#C73E1D" font-size="10" font-weight="700">Notes/Transcripts to RAG</text>
 
   <!-- Golden C360 to L2 Schema / Semantic -->
   <path d="M 592 410 Q 615 410 615 240 T 656 230" fill="none" stroke="#141B2D" stroke-width="2.5" marker-end="url(#arrow)"/>
-  <text x="590" y="270" fill="#141B2D" font-size="10" font-weight="700">Gold Tables</text>
+  <text x="618" y="275" fill="#141B2D" font-size="10" font-weight="700">Gold Tables</text>
 
   <!-- Golden C360 to L3 Feature Store -->
   <path d="M 592 450 Q 620 450 620 540 T 656 550" fill="none" stroke="#141B2D" stroke-width="2.5" marker-end="url(#arrow)"/>
-  <text x="600" y="510" fill="#141B2D" font-size="10" font-weight="700">Gold Features</text>
+  <text x="618" y="515" fill="#141B2D" font-size="10" font-weight="700">Gold Features</text>
 
   <!-- L2 Router to FastAPI -->
   <line x1="1084" y1="330" x2="1148" y2="220" stroke="#141B2D" stroke-width="2.5" marker-end="url(#arrow)"/>
@@ -303,7 +300,7 @@
 
   <!-- Human Override Loop (UI to Audit) -->
   <path d="M 1164 515 Q 1100 515 1094 770" fill="none" stroke="#C73E1D" stroke-dasharray="4,4" stroke-width="2" marker-end="url(#arrowOrange)"/>
-  <text x="1108" y="730" fill="#C73E1D" font-size="9.5" font-weight="700">Approve/Override Audit Log</text>
+  <text x="1070" y="725" fill="#C73E1D" font-size="9.5" font-weight="700">Decision Audit Log</text>
 
   <!-- ==================== GOVERNANCE FOUNDATION BAR (ACROSS ALL LAYERS) ==================== -->
   <rect x="30" y="828" width="1540" height="96" rx="10" fill="url(#govGrad)" filter="url(#cardShadow)"/>

@@ -367,22 +367,22 @@
       <div class="grid-2">
         <div class="card alert">
           <div class="card-title" style="color: var(--orange);">
-            <span>⚠️</span> The Collections Challenge Today
+            <span>[Challenge]</span> The Collections Challenge Today
           </div>
           <ul class="bullet-list">
             <li><strong>Severe Data Silos:</strong> Customer context is fractured across 9 legacy systems (cards, loans, deposits, dialers, CRM, bureau).</li>
-            <li><strong>High Handle Time:</strong> Over 3 minutes of a 10-minute call is squandered on manual cross-system record lookup.</li>
-            <li><strong>40% Broken Promise-to-Pay (PTP):</strong> Blanket, impersonal outreach leads to repeat delinquency and friction.</li>
+            <li><strong>High Handle Time:</strong> Over 3 minutes of a 10-minute call is squandered on manual cross-system record lookup (assumed baseline hypothesis).</li>
+            <li><strong>40% Broken Promise-to-Pay (PTP):</strong> Blanket, impersonal outreach leads to repeat delinquency and friction (assumed baseline).</li>
             <li><strong>Vulnerability Blind Spots:</strong> Hardship disclosures (medical emergencies, job loss) buried in call audio are missed.</li>
           </ul>
         </div>
 
         <div class="card accent">
           <div class="card-title" style="color: var(--amber-dark);">
-            <span>💡</span> Our Solution: One Governed Vertical Slice
+            <span>[Solution]</span> Our Solution: One Governed Vertical Slice
           </div>
           <ul class="bullet-list">
-            <li><strong>Layer 1 (Data Product Factory):</strong> Curates golden <em>Collections 360 (C360)</em> in DuckDB with 99%+ entity matching and data contracts.</li>
+            <li><strong>Layer 1 (Data Product Factory):</strong> Curates golden <em>Collections 360 (C360)</em> in DuckDB with high-confidence entity matching and data contracts.</li>
             <li><strong>Layer 2 (Insight &amp; NLP):</strong> <em>Collections Ask</em> writes transparent SQL, cites call transcripts via RAG, and refuses out-of-scope queries.</li>
             <li><strong>Layer 3 (AI Decisioning):</strong> <em>Next Best Action (NBA)</em> pairs LightGBM break risk with plain-English SHAP drivers and human override.</li>
             <li><strong>End-to-End Governance:</strong> Zero demographic bias, hardship circuit breakers, and immutable audit logs across all tiers.</li>
@@ -521,21 +521,21 @@
 
       <div class="grid-3">
         <div class="card">
-          <div class="card-title">📜 1. Formal Data Contract</div>
+          <div class="card-title">1. Formal Data Contract</div>
           <p style="font-size: 12.5px; color: var(--slate-text); line-height: 1.5;">
             Governed by <code>contracts/data_contract.yaml</code>. Enforces schema constraints, uniqueness, not-null rules, and valid DPD ranges [0, 365]. Emits live pass/fail data quality reports.
           </p>
         </div>
 
         <div class="card">
-          <div class="card-title">⚖️ 2. Zero Demographic Bias</div>
+          <div class="card-title">2. Zero Demographic Bias</div>
           <p style="font-size: 12.5px; color: var(--slate-text); line-height: 1.5;">
             Protected attributes (Age, Gender, Ethnicity, Religion, Marital Status, Postal Code proxies) are mathematically barred from features and models. Verified by automated unit tests.
           </p>
         </div>
 
         <div class="card">
-          <div class="card-title">🛡️ 3. Hardship Circuit Breaker</div>
+          <div class="card-title">3. Hardship Circuit Breaker</div>
           <p style="font-size: 12.5px; color: var(--slate-text); line-height: 1.5;">
             When vulnerability or hardship is detected from audio transcripts, automated outreach is instantly frozen. Accounts route strictly to human specialists for compassionate review.
           </p>
@@ -544,7 +544,7 @@
 
       <div class="grid-2" style="margin-top: 20px;">
         <div class="card">
-          <div class="card-title">🔒 4. Read-Only SQL Guardrails</div>
+          <div class="card-title">4. Read-Only SQL Guardrails</div>
           <ul class="bullet-list">
             <li>Strict <strong>SELECT-only</strong> AST validation via <code>sqlglot</code>; blocks DDL, DML, and injection.</li>
             <li>Enforced <code>LIMIT</code> (50 default, 200 max) prevents denial of service.</li>
@@ -553,7 +553,7 @@
         </div>
 
         <div class="card">
-          <div class="card-title">✍️ 5. Human-in-the-Loop Audit Trail</div>
+          <div class="card-title">5. Human-in-the-Loop Audit Trail</div>
           <ul class="bullet-list">
             <li>Every recommendation requires explicit human action (Approve or Override).</li>
             <li>Overrides require mandatory categorization and specialist notes.</li>
@@ -581,7 +581,7 @@
             <thead>
               <tr>
                 <th>KPI</th>
-                <th>Baseline</th>
+                <th>Assumed baseline</th>
                 <th>Mechanism</th>
                 <th>Target Lift</th>
               </tr>

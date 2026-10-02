@@ -7,8 +7,8 @@
 
 ### The Frontline Collections Problem
 - **Data Fragmentation Across 9 Systems:** Frontline collections agents must juggle core banking records, card accounts, unsecured loan ledgers, dialer logs, collections CRM, external bureau feeds, and audio notes.
-- **Wasted Capacity & High Handle Time:** Call handle times average ~10 minutes, with over 3 minutes lost navigating disparate legacy systems to identify customer exposure.
-- **High Broken Commitments:** A 40% Promise-to-Pay (PTP) break rate results from uncoordinated, aggressive, or mistimed outreach.
+- **Wasted Capacity & High Handle Time:** Call handle times average ~10 minutes, with over 3 minutes lost navigating disparate legacy systems to identify customer exposure (assumed baseline hypothesis).
+- **High Broken Commitments:** A 40% Promise-to-Pay (PTP) break rate (assumed baseline) results from uncoordinated, aggressive, or mistimed outreach.
 - **Vulnerability Blind Spots:** Crucial customer hardship disclosures (medical distress, job loss, family bereavement) buried in agent notes or call transcripts go unnoticed.
 
 ---

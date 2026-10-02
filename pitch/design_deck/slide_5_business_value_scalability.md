@@ -7,7 +7,7 @@
 
 ### Quantifiable Operational Impact
 
-| Collections KPI | Industry Baseline (Assumed) | Improvement Mechanism | Target Impact (Assumed) |
+| Collections KPI | Assumed baseline | Improvement Mechanism | Target Impact (Assumed) |
 |---|---|---|---|
 | **Promise-to-Pay (PTP) Kept Rate** | 60.0% | Prioritize high break-risk promises with tailored, early reminders | **+5.0 pts (to 65.0%)** |
 | **Contact Efficiency** | 20.0% (1 in 5 connect) | Match contact channel and timing to historical customer response patterns | **+15.0% relative lift** |
