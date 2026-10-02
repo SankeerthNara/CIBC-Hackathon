@@ -1,0 +1,111 @@
+{
+  "dataset": "gold.c360",
+  "run_at": "2026-10-02T06:00:00-04:00",
+  "contract_version": "1.0.0",
+  "summary": {
+    "rules_total": 9,
+    "passed": 7,
+    "warned": 2,
+    "failed": 0
+  },
+  "row_counts": {
+    "raw": {
+      "customers": 1000,
+      "card_accounts": 1312,
+      "loan_accounts": 742,
+      "deposit_accounts": 1204,
+      "collections_cases": 2418,
+      "contact_history": 15880
+    },
+    "curated": {
+      "customers": 987,
+      "rejected": 13
+    },
+    "gold": {
+      "c360": 962,
+      "identity_map": 4120
+    }
+  },
+  "rules": [
+    {
+      "id": "DQ-01",
+      "name": "unique_golden_id",
+      "status": "pass",
+      "checked": 962,
+      "failed": 0
+    },
+    {
+      "id": "DQ-02",
+      "name": "not_null_keys",
+      "status": "pass",
+      "checked": 962,
+      "failed": 0
+    },
+    {
+      "id": "DQ-03",
+      "name": "referential_integrity_source_ids",
+      "status": "pass",
+      "checked": 4120,
+      "failed": 0
+    },
+    {
+      "id": "DQ-04",
+      "name": "dpd_range",
+      "status": "pass",
+      "checked": 962,
+      "failed": 0
+    },
+    {
+      "id": "DQ-05",
+      "name": "balance_non_negative",
+      "status": "warn",
+      "checked": 962,
+      "failed": 7,
+      "note": "7 credit balances flagged, not rejected"
+    },
+    {
+      "id": "DQ-06",
+      "name": "freshness",
+      "status": "pass",
+      "checked": 962,
+      "failed": 0
+    },
+    {
+      "id": "DQ-07",
+      "name": "match_confidence_range",
+      "status": "pass",
+      "checked": 962,
+      "failed": 0
+    },
+    {
+      "id": "DQ-08",
+      "name": "bucket_consistent_with_dpd",
+      "status": "pass",
+      "checked": 962,
+      "failed": 0
+    },
+    {
+      "id": "DQ-09",
+      "name": "low_confidence_review",
+      "status": "warn",
+      "checked": 962,
+      "failed": 23,
+      "note": "23 customers with match_confidence < 0.80 sent to manual review"
+    }
+  ],
+  "schema_drift": [
+    {
+      "table": "raw.contact_history",
+      "change": "new column",
+      "column": "sentiment",
+      "severity": "info"
+    }
+  ],
+  "identity_resolution": {
+    "golden_customers": 962,
+    "avg_sources_per_customer": 4.3,
+    "avg_match_confidence": 0.94,
+    "below_threshold": 23
+  },
+  "note": "Illustrative mock numbers. Real values come from the pipeline."
+}

@@ -1,0 +1,62 @@
+{
+  "model_version": "2026.10.02-a",
+  "protected_attributes_excluded": {
+    "status": "pass",
+    "checked_attributes": [
+      "age",
+      "gender",
+      "ethnicity",
+      "religion",
+      "marital_status",
+      "postal_code"
+    ],
+    "features_in_model": [
+      "dpd_max_current",
+      "ptp_broken_count_90d",
+      "payroll_delay_days",
+      "card_utilisation",
+      "sms_response_rate_30d",
+      "bureau_score_delta_90d",
+      "days_since_last_contact",
+      "deposit_balance",
+      "hardship_signal",
+      "stated_delay_reason",
+      "ptp_intent_strength"
+    ],
+    "test": "tests/test_no_protected_attributes.py::test_feature_list",
+    "last_run": "2026-10-02T06:00:00-04:00"
+  },
+  "human_in_the_loop": {
+    "decisions_total": 10,
+    "pending": 8,
+    "approved": 1,
+    "overridden": 1,
+    "override_rate": 0.5
+  },
+  "hardship": {
+    "severe_routed_to_specialist": 1,
+    "possible_flagged_for_agent_review": 1,
+    "automated_treatment_blocked": 1
+  },
+  "segment_outcomes": [
+    {
+      "segment": "salaried",
+      "customers": 5,
+      "avg_break_prob": 0.57,
+      "aggressive_treatment_rate": 0.4
+    },
+    {
+      "segment": "hourly_wage",
+      "customers": 3,
+      "avg_break_prob": 0.59,
+      "aggressive_treatment_rate": 0.0
+    },
+    {
+      "segment": "self_employed",
+      "customers": 2,
+      "avg_break_prob": 0.67,
+      "aggressive_treatment_rate": 0.0
+    }
+  ],
+  "notes": "aggressive_treatment = call or escalate. Illustrative mock numbers; real values come from the decisioning module."
+}

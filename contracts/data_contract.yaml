@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: DataContract
+name: gold.c360
+version: 1.0.0
+status: draft
+owner: Collections Data Product Owner
+description_url: docs/ARCHITECTURE.md
+purpose: >
+  Single trusted record per customer for the Collections function: product holdings,
+  delinquency status, consent, contact summary and hardship signal, resolved across
+  source systems. Serves agent assist, natural-language access and Next Best Action.
+classification: Confidential (synthetic data in this prototype)
+
+lineage:
+  sources:
+    - {system: cards, table: raw.card_accounts, id_column: card_customer_id}
+    - {system: loans, table: raw.loan_accounts, id_column: loan_customer_id}
+    - {system: deposits, table: raw.deposit_accounts, id_column: deposit_customer_id}
+    - {system: collections, table: raw.collections_cases, id_column: collections_customer_id}
+    - {system: crm, table: raw.customers, id_column: crm_customer_id}
+    - {system: contacts, table: raw.contact_history, id_column: contact_customer_id}
+    - {system: notes, table: raw.agent_notes, id_column: note_customer_id}
+    - {system: transcripts, table: raw.call_transcripts, id_column: transcript_customer_id}
+    - {system: bureau, table: raw.external, id_column: bureau_customer_id}
+  flow: raw -> curated -> gold
+  identity_map: gold.identity_map   # golden_id, source_system, source_id, match_confidence
+
+schema:
+  - {column: golden_id, type: VARCHAR, description: "Golden customer id, format G-000000", pii: none, nlq: allowed}
+  - {column: display_name, type: VARCHAR, description: "Initial + surname, e.g. R. Mitchell (masked for display)", pii: indirect, nlq: allowed}
+  - {column: segment, type: VARCHAR, description: "Income-pattern segment: salaried, hourly_wage, self_employed, other", pii: none, nlq: allowed}
+  - {column: province, type: VARCHAR, description: "Province code (ON, QC, ...)", pii: indirect, nlq: allowed}
+  - {column: preferred_language, type: VARCHAR, description: "EN or FR", pii: none, nlq: allowed}
+  - {column: customer_since, type: DATE, description: "Date the customer first opened a product", pii: none, nlq: allowed}
+  - {column: consent_call, type: BOOLEAN, description: "May be contacted by phone", pii: none, nlq: allowed}
+  - {column: consent_sms, type: BOOLEAN, description: "May be contacted by SMS", pii: none, nlq: allowed}
+  - {column: consent_email, type: BOOLEAN, description: "May be contacted by email", pii: none, nlq: allowed}
+  - {column: card_count, type: INTEGER, description: "Open credit card accounts", pii: none, nlq: allowed}
+  - {column: loan_count, type: INTEGER, description: "Open loan accounts", pii: none, nlq: allowed}
+  - {column: deposit_count, type: INTEGER, description: "Open deposit accounts", pii: none, nlq: allowed}
+  - {column: total_balance, type: DECIMAL(12,2), description: "Sum of owed balances across credit products (CAD)", pii: none, nlq: allowed}
+  - {column: total_overdue, type: DECIMAL(12,2), description: "Sum of overdue amounts (CAD)", pii: none, nlq: allowed}
+  - {column: has_credit_balance, type: BOOLEAN, description: "True if any account holds a credit (negative owed) balance", pii: none, nlq: allowed}
+  - {column: max_dpd, type: INTEGER, description: "Highest days-past-due across products", pii: none, nlq: allowed}
+  - {column: bucket, type: VARCHAR, description: "DPD bucket: current, 1-30, 31-60, 61-90, 90+", pii: none, nlq: allowed}
+  - {column: hardship_flag, type: VARCHAR, description: "clear | possible | severe (LLM-extracted from notes/calls, human-reviewed)", pii: sensitive, nlq: allowed}
+  - {column: match_confidence, type: DOUBLE, description: "Identity resolution confidence 0-1", pii: none, nlq: allowed}
+  - {column: last_contact_at, type: TIMESTAMP, description: "Latest contact attempt, any channel", pii: none, nlq: allowed}
+  - {column: refreshed_at, type: TIMESTAMP, description: "When this row was last rebuilt", pii: none, nlq: allowed}
+
+# Never in gold.c360; held only in restricted store. Blocked from NLQ and decisioning.
+restricted_attributes:
+  direct_pii: [legal_name, date_of_birth, sin, phone, email, street_address, postal_code]
+  protected: [age, gender, ethnicity, religion, marital_status]
+  note: postal_code is also treated as a proxy for protected attributes
+
+quality_rules:
+  - {id: DQ-01, name: unique_golden_id, column: golden_id, check: unique, severity: error}
+  - {id: DQ-02, name: not_null_keys, columns: [golden_id, display_name, bucket, max_dpd, match_confidence], check: not_null, severity: error}
+  - {id: DQ-03, name: referential_integrity_source_ids, check: "every gold.identity_map.source_id exists in its raw source table, and every golden_id has >=1 identity_map row", severity: error}
+  - {id: DQ-04, name: dpd_range, column: max_dpd, check: "between 0 and 365", severity: error}
+  - {id: DQ-05, name: balance_non_negative, column: total_balance, check: "total_balance >= 0 unless has_credit_balance = true (credit balances are flagged, not rejected)", severity: warn}
+  - {id: DQ-06, name: freshness, column: refreshed_at, check: "now() - refreshed_at < 24 hours", severity: error}
+  - {id: DQ-07, name: match_confidence_range, column: match_confidence, check: "between 0 and 1", severity: error}
+  - {id: DQ-08, name: bucket_consistent_with_dpd, columns: [bucket, max_dpd], check: "bucket matches max_dpd (0=current, 1-30, 31-60, 61-90, >90=90+)", severity: error}
+  - {id: DQ-09, name: low_confidence_review, column: match_confidence, check: "rows with match_confidence < 0.80 routed to manual review list", severity: warn}
+
+allowed_uses:
+  - Agent assist and customer-context display
+  - Natural-language analytics through the guarded NL-to-SQL layer (allow-listed columns only)
+  - Promise-to-pay break scoring and Next Best Action recommendations with explanation and human review
+  - Aggregate reporting on roll rate, cure rate, PTP kept rate, contact efficiency
+
+prohibited_uses:
+  - Using protected attributes (age, gender, ethnicity, religion, marital status) or proxies (postal code) in any decision or model feature
+  - Fully automated adverse action; hardship cases must be reviewed by a human specialist
+  - Exposing direct PII (name beyond display_name, DOB, SIN, phone, email, address) through NLQ or UI
+  - Contacting customers outside recorded consent or permitted contact hours
+  - Use outside this educational prototype; data is synthetic
+
+access:
+  roles:
+    agent: [read c360, read own nba queue, approve/override non-hardship decisions]
+    specialist: [read c360, approve/override hardship decisions]
+    supervisor: [read all, read audit log]
+    nlq_service: [read-only on allow-listed columns in contracts/schema.md]
+
+retention:
+  c360: "Rebuilt on every pipeline run; history not retained in prototype"
+  audit_log: "Retained for the life of the prototype; append-only"
+  llm_features: "Cached with prompt version; deleted with the demo database"
+
+change_policy: "Schema or rule changes require a version bump and a PR approved by both team members."

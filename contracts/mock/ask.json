@@ -1,0 +1,189 @@
+{
+  "answered": {
+    "question": "Which customers are most likely to break a promise to pay this week?",
+    "answer": "8 open promises are most likely to break, with $12,990 at risk. R. Mitchell (0.81) and S. Tremblay (0.78) are the highest.",
+    "sql": "SELECT c.golden_id, c.display_name, p.product, p.ptp_amount, p.ptp_due_date, s.break_prob, s.top_reason\nFROM gold.promises_to_pay p\nJOIN gold.model_scores s ON s.golden_id = p.golden_id AND s.model_name = 'ptp_break' AND s.score_date = DATE '2026-10-02'\nJOIN gold.c360 c ON c.golden_id = p.golden_id\nWHERE p.ptp_status = 'open' AND p.ptp_due_date BETWEEN DATE '2026-09-28' AND DATE '2026-10-04'\nORDER BY s.break_prob DESC\nLIMIT 8",
+    "tables_used": [
+      "gold.promises_to_pay",
+      "gold.model_scores",
+      "gold.c360"
+    ],
+    "understood_as": [
+      {
+        "token": "open promises to pay",
+        "kind": "filter",
+        "editable": true
+      },
+      {
+        "token": "due 28 Sep - 4 Oct",
+        "kind": "time_window",
+        "editable": true
+      },
+      {
+        "token": "sort by break probability desc",
+        "kind": "sort",
+        "editable": true
+      },
+      {
+        "token": "top 8",
+        "kind": "limit",
+        "editable": true
+      }
+    ],
+    "columns": [
+      "golden_id",
+      "display_name",
+      "product",
+      "ptp_amount",
+      "ptp_due_date",
+      "break_prob",
+      "top_reason"
+    ],
+    "rows": [
+      [
+        "G-004817",
+        "R. Mitchell",
+        "Personal loan + Credit card",
+        800.0,
+        "2026-10-02",
+        0.81,
+        "Payroll deposit missing for 14 days"
+      ],
+      [
+        "G-011203",
+        "S. Tremblay",
+        "Credit card",
+        2250.0,
+        "2026-09-30",
+        0.78,
+        "Card utilisation at 93%"
+      ],
+      [
+        "G-007741",
+        "A. Nguyen",
+        "Personal loan",
+        1900.0,
+        "2026-10-01",
+        0.74,
+        "Irregular deposits"
+      ],
+      [
+        "G-020915",
+        "P. Gagnon",
+        "Credit card",
+        640.0,
+        "2026-09-29",
+        0.69,
+        "Missed last two statement payments"
+      ],
+      [
+        "G-003318",
+        "M. Roy",
+        "Auto loan",
+        3100.0,
+        "2026-10-03",
+        0.66,
+        "Two missed instalments"
+      ],
+      [
+        "G-016672",
+        "K. MacDonald",
+        "Personal loan",
+        1450.0,
+        "2026-10-04",
+        0.63,
+        "Calls not permitted"
+      ],
+      [
+        "G-009024",
+        "V. Chen",
+        "Credit card",
+        1600.0,
+        "2026-10-02",
+        0.61,
+        "Bureau score dropped 42 points"
+      ],
+      [
+        "G-012890",
+        "T. Campbell",
+        "Line of credit",
+        1250.0,
+        "2026-09-30",
+        0.6,
+        "Seasonal income pattern"
+      ]
+    ],
+    "row_count": 8,
+    "followups": [
+      "Why is G-004817 high risk?",
+      "Split by agent team",
+      "Which have hardship flags?"
+    ],
+    "citations": [],
+    "refused": false,
+    "refusal_reason": null,
+    "route": "sql"
+  },
+  "rag_answer": {
+    "question": "Which customers mentioned job loss or reduced shifts in recent calls?",
+    "answer": "Two customers mentioned reduced work: R. Mitchell said shifts were cut at the plant in August, and A. Nguyen said business income dropped this quarter.",
+    "sql": null,
+    "tables_used": [],
+    "understood_as": [
+      {
+        "token": "topic: job loss or reduced hours",
+        "kind": "filter",
+        "editable": true
+      },
+      {
+        "token": "source: call transcripts",
+        "kind": "source",
+        "editable": false
+      }
+    ],
+    "columns": [],
+    "rows": [],
+    "row_count": 0,
+    "followups": [
+      "Show their contact timeline",
+      "What treatment is recommended for them?"
+    ],
+    "citations": [
+      {
+        "source_type": "call_transcript",
+        "source_id": "T-8812",
+        "golden_id": "G-004817",
+        "snippet": "Shifts at the plant got cut in August, I can do $1,000 by the 15th.",
+        "date": "2026-09-12"
+      },
+      {
+        "source_type": "call_transcript",
+        "source_id": "T-8901",
+        "golden_id": "G-007741",
+        "snippet": "My income dropped this quarter, what are my options?",
+        "date": "2026-09-29"
+      }
+    ],
+    "refused": false,
+    "refusal_reason": null,
+    "route": "rag"
+  },
+  "refused": {
+    "question": "What is the date of birth and SIN of customer G-004817?",
+    "answer": null,
+    "sql": null,
+    "tables_used": [],
+    "understood_as": [],
+    "columns": [],
+    "rows": [],
+    "row_count": 0,
+    "followups": [
+      "Show product holdings for G-004817",
+      "Show the contact timeline for G-004817"
+    ],
+    "citations": [],
+    "refused": true,
+    "refusal_reason": "This asks for direct personal identifiers (date of birth, SIN), which are not available through natural-language queries.",
+    "route": "refused"
+  }
+}

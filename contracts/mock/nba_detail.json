@@ -1,0 +1,513 @@
+{
+  "NBA-0001": {
+    "decision_id": "NBA-0001",
+    "golden_id": "G-004817",
+    "display_name": "R. Mitchell",
+    "products": [
+      "Credit card",
+      "Personal loan"
+    ],
+    "bucket": "31-60",
+    "max_dpd": 34,
+    "total_overdue": 1612.0,
+    "break_prob": 0.81,
+    "top_reason": "Payroll deposit missing for 14 days",
+    "treatment": "hardship_referral",
+    "channel": "call",
+    "recommended_time": "2026-10-03T10:00:00-04:00",
+    "requires_specialist": true,
+    "status": "pending",
+    "hardship_flag": "severe",
+    "explanation": "Hardship signals in the last call and a missed payroll deposit. Route to a hardship specialist; do not apply automated collection pressure.",
+    "drivers": [
+      {
+        "feature": "payroll_delay_days",
+        "value": 29,
+        "direction": "increases_risk",
+        "plain_english": "No payroll deposit for 29 days"
+      },
+      {
+        "feature": "hardship_signal",
+        "value": "severe",
+        "direction": "increases_risk",
+        "plain_english": "Customer said shifts were cut at the plant in August"
+      },
+      {
+        "feature": "ptp_broken_count_90d",
+        "value": 1,
+        "direction": "increases_risk",
+        "plain_english": "One promise to pay broken in the last 90 days"
+      }
+    ],
+    "consent": {
+      "call": true,
+      "sms": true,
+      "email": true
+    },
+    "model_version": "2026.10.02-a",
+    "created_at": "2026-10-02T06:10:00-04:00",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "final_treatment": null,
+    "override_reason": null
+  },
+  "NBA-0002": {
+    "decision_id": "NBA-0002",
+    "golden_id": "G-011203",
+    "display_name": "S. Tremblay",
+    "products": [
+      "Credit card"
+    ],
+    "bucket": "31-60",
+    "max_dpd": 41,
+    "total_overdue": 2250.0,
+    "break_prob": 0.78,
+    "top_reason": "Card utilisation at 93% with two missed payments",
+    "treatment": "call",
+    "channel": "call",
+    "recommended_time": "2026-10-03T09:30:00-04:00",
+    "requires_specialist": false,
+    "status": "pending",
+    "hardship_flag": "clear",
+    "explanation": "High utilisation and 41 DPD with no SMS response. Call in French in the morning window; customer has not consented to SMS.",
+    "drivers": [
+      {
+        "feature": "card_utilisation",
+        "value": 0.93,
+        "direction": "increases_risk",
+        "plain_english": "Card is at 93% of its limit"
+      },
+      {
+        "feature": "dpd_max_current",
+        "value": 41,
+        "direction": "increases_risk",
+        "plain_english": "41 days past due"
+      },
+      {
+        "feature": "sms_response_rate_30d",
+        "value": 0.0,
+        "direction": "increases_risk",
+        "plain_english": "No response to SMS in 30 days; a call is more likely to reach them"
+      }
+    ],
+    "consent": {
+      "call": true,
+      "sms": false,
+      "email": true
+    },
+    "model_version": "2026.10.02-a",
+    "created_at": "2026-10-02T06:10:00-04:00",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "final_treatment": null,
+    "override_reason": null
+  },
+  "NBA-0003": {
+    "decision_id": "NBA-0003",
+    "golden_id": "G-007741",
+    "display_name": "A. Nguyen",
+    "products": [
+      "Personal loan"
+    ],
+    "bucket": "31-60",
+    "max_dpd": 52,
+    "total_overdue": 1900.0,
+    "break_prob": 0.74,
+    "top_reason": "Irregular deposits and income drop",
+    "treatment": "payment_plan",
+    "channel": "call",
+    "recommended_time": "2026-10-03T13:00:00-04:00",
+    "requires_specialist": false,
+    "status": "pending",
+    "hardship_flag": "possible",
+    "explanation": "Self-reported income drop and 52 DPD. A reduced-payment plan is more likely to be kept than a full-amount demand. Possible hardship: agent review required, specialist optional.",
+    "drivers": [
+      {
+        "feature": "stated_delay_reason",
+        "value": "reduced_income",
+        "direction": "increases_risk",
+        "plain_english": "Said business income dropped this quarter"
+      },
+      {
+        "feature": "dpd_max_current",
+        "value": 52,
+        "direction": "increases_risk",
+        "plain_english": "52 days past due"
+      },
+      {
+        "feature": "ptp_intent_strength",
+        "value": 0.55,
+        "direction": "increases_risk",
+        "plain_english": "Moderate intent to pay on the last call"
+      }
+    ],
+    "consent": {
+      "call": true,
+      "sms": true,
+      "email": true
+    },
+    "model_version": "2026.10.02-a",
+    "created_at": "2026-10-02T06:10:00-04:00",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "final_treatment": null,
+    "override_reason": null
+  },
+  "NBA-0004": {
+    "decision_id": "NBA-0004",
+    "golden_id": "G-020915",
+    "display_name": "P. Gagnon",
+    "products": [
+      "Credit card"
+    ],
+    "bucket": "1-30",
+    "max_dpd": 29,
+    "total_overdue": 640.0,
+    "break_prob": 0.69,
+    "top_reason": "Missed last two statement payments",
+    "treatment": "reminder",
+    "channel": "sms",
+    "recommended_time": "2026-10-02T18:00:00-04:00",
+    "requires_specialist": false,
+    "status": "pending",
+    "hardship_flag": "clear",
+    "explanation": "Near the 30-day boundary and responsive to SMS. A reminder this evening may prevent a roll to the next bucket.",
+    "drivers": [
+      {
+        "feature": "dpd_max_current",
+        "value": 29,
+        "direction": "increases_risk",
+        "plain_english": "29 days past due"
+      },
+      {
+        "feature": "sms_response_rate_30d",
+        "value": 0.6,
+        "direction": "decreases_risk",
+        "plain_english": "Usually responds to SMS"
+      },
+      {
+        "feature": "days_since_last_contact",
+        "value": 6,
+        "direction": "decreases_risk",
+        "plain_english": "Contacted 6 days ago"
+      }
+    ],
+    "consent": {
+      "call": true,
+      "sms": true,
+      "email": false
+    },
+    "model_version": "2026.10.02-a",
+    "created_at": "2026-10-02T06:10:00-04:00",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "final_treatment": null,
+    "override_reason": null
+  },
+  "NBA-0005": {
+    "decision_id": "NBA-0005",
+    "golden_id": "G-003318",
+    "display_name": "M. Roy",
+    "products": [
+      "Auto loan"
+    ],
+    "bucket": "61-90",
+    "max_dpd": 67,
+    "total_overdue": 3100.0,
+    "break_prob": 0.66,
+    "top_reason": "Two missed instalments, balance available in chequing",
+    "treatment": "call",
+    "channel": "call",
+    "recommended_time": "2026-10-03T11:00:00-04:00",
+    "requires_specialist": false,
+    "status": "pending",
+    "hardship_flag": "clear",
+    "explanation": "Customer has funds but is 67 DPD with no broken promises. A call to arrange a catch-up payment is likely to succeed.",
+    "drivers": [
+      {
+        "feature": "dpd_max_current",
+        "value": 67,
+        "direction": "increases_risk",
+        "plain_english": "67 days past due"
+      },
+      {
+        "feature": "deposit_balance",
+        "value": 1450,
+        "direction": "decreases_risk",
+        "plain_english": "Chequing holds enough to cover one instalment"
+      },
+      {
+        "feature": "ptp_broken_count_90d",
+        "value": 0,
+        "direction": "decreases_risk",
+        "plain_english": "No broken promises in the last 90 days"
+      }
+    ],
+    "consent": {
+      "call": true,
+      "sms": true,
+      "email": true
+    },
+    "model_version": "2026.10.02-a",
+    "created_at": "2026-10-02T06:10:00-04:00",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "final_treatment": null,
+    "override_reason": null
+  },
+  "NBA-0006": {
+    "decision_id": "NBA-0006",
+    "golden_id": "G-016672",
+    "display_name": "K. MacDonald",
+    "products": [
+      "Personal loan"
+    ],
+    "bucket": "31-60",
+    "max_dpd": 38,
+    "total_overdue": 1450.0,
+    "break_prob": 0.63,
+    "top_reason": "No consent for calls; prior SMS responses positive",
+    "treatment": "reminder",
+    "channel": "sms",
+    "recommended_time": "2026-10-03T12:00:00-03:00",
+    "requires_specialist": false,
+    "status": "pending",
+    "hardship_flag": "clear",
+    "explanation": "Calls are not permitted. SMS with a payment link at noon matches when the customer usually responds.",
+    "drivers": [
+      {
+        "feature": "consent_call",
+        "value": false,
+        "direction": "decreases_risk",
+        "plain_english": "Calls not permitted; SMS used instead"
+      },
+      {
+        "feature": "sms_response_rate_30d",
+        "value": 0.5,
+        "direction": "decreases_risk",
+        "plain_english": "Responds to half of SMS"
+      },
+      {
+        "feature": "dpd_max_current",
+        "value": 38,
+        "direction": "increases_risk",
+        "plain_english": "38 days past due"
+      }
+    ],
+    "consent": {
+      "call": false,
+      "sms": true,
+      "email": true
+    },
+    "model_version": "2026.10.02-a",
+    "created_at": "2026-10-02T06:10:00-04:00",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "final_treatment": null,
+    "override_reason": null
+  },
+  "NBA-0007": {
+    "decision_id": "NBA-0007",
+    "golden_id": "G-009024",
+    "display_name": "V. Chen",
+    "products": [
+      "Credit card"
+    ],
+    "bucket": "31-60",
+    "max_dpd": 45,
+    "total_overdue": 1600.0,
+    "break_prob": 0.61,
+    "top_reason": "Bureau score dropped 42 points in 90 days",
+    "treatment": "payment_plan",
+    "channel": "call",
+    "recommended_time": "2026-10-03T14:00:00-07:00",
+    "requires_specialist": false,
+    "status": "pending",
+    "hardship_flag": "clear",
+    "explanation": "Falling bureau score and a maxed card. Offer a structured payment plan before further deterioration. Match confidence is 0.84, so verify identity on the call.",
+    "drivers": [
+      {
+        "feature": "bureau_score_delta_90d",
+        "value": -42,
+        "direction": "increases_risk",
+        "plain_english": "Bureau score down 42 points"
+      },
+      {
+        "feature": "card_utilisation",
+        "value": 0.95,
+        "direction": "increases_risk",
+        "plain_english": "Card is at 95% of its limit"
+      },
+      {
+        "feature": "dpd_max_current",
+        "value": 45,
+        "direction": "increases_risk",
+        "plain_english": "45 days past due"
+      }
+    ],
+    "consent": {
+      "call": true,
+      "sms": true,
+      "email": true
+    },
+    "model_version": "2026.10.02-a",
+    "created_at": "2026-10-02T06:10:00-04:00",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "final_treatment": null,
+    "override_reason": null
+  },
+  "NBA-0008": {
+    "decision_id": "NBA-0008",
+    "golden_id": "G-012890",
+    "display_name": "T. Campbell",
+    "products": [
+      "Line of credit"
+    ],
+    "bucket": "31-60",
+    "max_dpd": 33,
+    "total_overdue": 1250.0,
+    "break_prob": 0.6,
+    "top_reason": "Seasonal income pattern, last promise kept",
+    "treatment": "reminder",
+    "channel": "email",
+    "recommended_time": "2026-10-03T09:00:00-06:00",
+    "requires_specialist": false,
+    "status": "pending",
+    "hardship_flag": "clear",
+    "explanation": "Recently engaged and kept the last promise. A light email reminder is proportionate; no call needed.",
+    "drivers": [
+      {
+        "feature": "ptp_broken_count_90d",
+        "value": 0,
+        "direction": "decreases_risk",
+        "plain_english": "Kept the last promise"
+      },
+      {
+        "feature": "dpd_max_current",
+        "value": 33,
+        "direction": "increases_risk",
+        "plain_english": "33 days past due"
+      },
+      {
+        "feature": "days_since_last_contact",
+        "value": 3,
+        "direction": "decreases_risk",
+        "plain_english": "Contacted 3 days ago"
+      }
+    ],
+    "consent": {
+      "call": true,
+      "sms": true,
+      "email": true
+    },
+    "model_version": "2026.10.02-a",
+    "created_at": "2026-10-02T06:10:00-04:00",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "final_treatment": null,
+    "override_reason": null
+  },
+  "NBA-0009": {
+    "decision_id": "NBA-0009",
+    "golden_id": "G-015530",
+    "display_name": "J. Singh",
+    "products": [
+      "Credit card"
+    ],
+    "bucket": "current",
+    "max_dpd": 0,
+    "total_overdue": 0,
+    "break_prob": 0.12,
+    "top_reason": "Account current, strong deposits",
+    "treatment": "reminder",
+    "channel": "app",
+    "recommended_time": "2026-10-04T09:00:00-04:00",
+    "requires_specialist": false,
+    "status": "pending",
+    "hardship_flag": "clear",
+    "explanation": "Low risk. Only a gentle in-app reminder ahead of the statement date.",
+    "drivers": [
+      {
+        "feature": "dpd_max_current",
+        "value": 0,
+        "direction": "decreases_risk",
+        "plain_english": "Account is current"
+      },
+      {
+        "feature": "payroll_delay_days",
+        "value": 0,
+        "direction": "decreases_risk",
+        "plain_english": "Salary deposited on time"
+      },
+      {
+        "feature": "card_utilisation",
+        "value": 0.2,
+        "direction": "decreases_risk",
+        "plain_english": "Card at 20% of its limit"
+      }
+    ],
+    "consent": {
+      "call": true,
+      "sms": true,
+      "email": true
+    },
+    "model_version": "2026.10.02-a",
+    "created_at": "2026-10-02T06:10:00-04:00",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "final_treatment": null,
+    "override_reason": null
+  },
+  "NBA-0010": {
+    "decision_id": "NBA-0010",
+    "golden_id": "G-018264",
+    "display_name": "L. Okafor",
+    "products": [
+      "Credit card"
+    ],
+    "bucket": "1-30",
+    "max_dpd": 12,
+    "total_overdue": 180.0,
+    "break_prob": 0.34,
+    "top_reason": "Early delinquency, overdraft on chequing",
+    "treatment": "reminder",
+    "channel": "call",
+    "recommended_time": "2026-10-03T17:00:00-05:00",
+    "requires_specialist": false,
+    "status": "pending",
+    "hardship_flag": "clear",
+    "explanation": "Early stage; a friendly call after work hours can resolve it before it rolls. Overdraft noted.",
+    "drivers": [
+      {
+        "feature": "dpd_max_current",
+        "value": 12,
+        "direction": "increases_risk",
+        "plain_english": "12 days past due"
+      },
+      {
+        "feature": "deposit_balance",
+        "value": -45,
+        "direction": "increases_risk",
+        "plain_english": "Chequing is overdrawn"
+      },
+      {
+        "feature": "ptp_broken_count_90d",
+        "value": 0,
+        "direction": "decreases_risk",
+        "plain_english": "No broken promises"
+      }
+    ],
+    "consent": {
+      "call": true,
+      "sms": false,
+      "email": true
+    },
+    "model_version": "2026.10.02-a",
+    "created_at": "2026-10-02T06:10:00-04:00",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "final_treatment": null,
+    "override_reason": null
+  }
+}
