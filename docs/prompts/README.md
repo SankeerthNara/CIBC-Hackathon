@@ -1,9 +1,11 @@
 # Prompt Index
 
-| File | Who | Tools |
+| File | Who | Tool and steps |
 |---|---|---|
-| [PERSON_A_PROMPTS.md](PERSON_A_PROMPTS.md) | Person A | ChatGPT, Claude CLI, Antigravity |
-| [PERSON_B_PROMPTS.md](PERSON_B_PROMPTS.md) | Person B | Antigravity |
+| [A_CLAUDE_CLI.md](A_CLAUDE_CLI.md) | Person A | Claude CLI (main builder). Steps 0, 3, 4, 5, 6, 7 |
+| [A_CHATGPT.md](A_CHATGPT.md) | Person A | ChatGPT (scope, governance, pitch). Shared context + Steps 1, 2, 9 |
+| [A_ANTIGRAVITY.md](A_ANTIGRAVITY.md) | Person A | Antigravity (parallel agents). Step 8 |
+| [B_ANTIGRAVITY.md](B_ANTIGRAVITY.md) | Person B | Antigravity (all of B's work). Steps 0-10 |
 
 Overall plan, schedule and ownership: [../AI_WORKFLOW.md](../AI_WORKFLOW.md)
 
